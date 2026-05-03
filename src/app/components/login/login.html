@@ -1,0 +1,80 @@
+<p-toast class="p-toast-icon-close" [closable]="false"></p-toast>
+<div class="container-fluid">
+    <div class="middle">
+        <div class="login-container">
+            <div class="card flex justify-center">
+                <p-image src="assets/img/img7.PNG" alt="Image" class="image-container" />
+            </div>
+
+            <div class="div-2 mt-2">
+                <div class="div-3 p-2 border-0">
+                    <form [formGroup]="formLogin">
+                        <br>
+                        <div class="col-12 md:col-4">
+                            <div class="card flex justify-center">
+                                <p-iftalabel>
+                                    <p-iconfield>
+                                        <p-inputicon class="pi pi-user" />
+                                        <input type="text" #username pInputText formControlName="user"
+                                            autocomplete="false" class="full-width" (keydown)="onEnterPressed($event)">
+                                    </p-iconfield>
+                                    <label for="username">Username</label>
+                                </p-iftalabel>
+                            </div>
+                        </div>
+
+                        <div class="col-12 md:col-4">
+                            <div class="card flex justify-center">
+                                <p-iftalabel>
+                                    <p-iconfield>
+                                        <p-inputicon class="pi pi-lock" />
+                                        <input type="password" #password pInputText class="full-width"
+                                            formControlName="passw" autocomplete="false">
+                                    </p-iconfield>
+                                    <label for="username">Password</label>
+                                </p-iftalabel>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card flex flex-wrap justify-center gap-4 mt-3">
+                                <div class="checkbox-container">
+                                    <p-checkbox [binary]="true" inputId="ingredient1" formControlName="acceso"
+                                        (onChange)="onCheckboxChange($event)" />
+                                    <label for="ingredient1" class="ml-2 checkbox-label"> Acceso móvil </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card flex flex-col items-center gap-4 mt-3">
+                            <p-button icon="pi pi pi-user " label=" Iniciar sesión" (click)="funcLogin()"
+                                class="full-width-btn" />
+                        </div>
+                    </form>
+                    <br>
+                    <div class="contrato">
+                        <i>Activación servicio: <br> Desde: 02-01-2025 hasta el 02-01-2026</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p-toast key="confirm" position="bottom-center" styleClass="login-toast">
+        <ng-template pTemplate="message" let-message>
+            <div class="item">
+                <div class="lds-spinner">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </ng-template>
+    </p-toast>

@@ -1,0 +1,176 @@
+/* Estilos para pantallas medianas y pequeñas (hasta 1366px de ancho) */
+@media screen and (max-width: 1366px) {
+    :host ::ng-deep .p-menubar {
+        height: 10vh;
+        border-radius: 5px;
+        border: 1px solid;
+        margin-right: 5px;
+        z-index: 10;
+        background: #4568DC;
+        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
+        background: linear-gradient(to bottom, #4568DC #B06AB3);
+    }
+
+    :host ::ng-deep .p-menubar a {
+        text-decoration: none !important;
+        color: black;
+    }
+
+    :host ::ng-deep .p-menubar-item-content {
+        height: 40px;
+        width: 230px;
+        background: white;
+        border-radius: 5px;
+        margin-left: 0px;
+        z-index: 10;
+    }
+
+
+    :host ::ng-deep .p-menubar-item {
+        margin-top: 12px;
+    }
+
+    :host ::ng-deep .p-menubar-submenu {
+        background: #4568DC;
+        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
+        background: linear-gradient(to bottom, #4568DC #B06AB3);
+        margin-top: 13px;
+        padding: 10px !important;
+        padding-bottom: 19px;
+    }
+
+}
+
+@media screen and (min-width: 1440px) {
+    :host ::ng-deep .p-menubar {
+        height: 8vh;
+        border-radius: 5px;
+        border: 1px solid;
+        margin-right: 5px;
+        z-index: 10;
+        background: #4568DC;
+        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
+        background: linear-gradient(to bottom, #4568DC #B06AB3);
+    }
+
+    :host ::ng-deep .p-menubar a {
+        text-decoration: none !important;
+        color: black;
+    }
+
+    :host ::ng-deep .p-menubar-item-content {
+        height: 40px;
+        width: 230px;
+        background: white;
+        border-radius: 5px;
+        margin-left: 0px;
+        z-index: 10;
+    }
+
+
+    :host ::ng-deep .p-menubar-item {
+        margin-top: 12px;
+    }
+
+    :host ::ng-deep .p-menubar-submenu {
+        background: #4568DC;
+        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
+        background: linear-gradient(to bottom, #4568DC #B06AB3);
+        margin-top: 13px;
+        padding-bottom: 17px;
+    }
+}
+
+/* Estilos para pantallas medianas y pequeñas (hasta 1600px de ancho) */
+@media screen and (min-width: 1600px) {
+    :host ::ng-deep .p-menubar {
+        height: 8vh;
+        border-radius: 5px;
+        border: 1px solid;
+        margin-right: 5px;
+        z-index: 10;
+        background: #4568DC;
+        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
+        background: linear-gradient(to bottom, #4568DC #B06AB3);
+    }
+
+    :host ::ng-deep .p-menubar a {
+        text-decoration: none !important;
+        color: black;
+    }
+
+    :host ::ng-deep .p-menubar-item-content {
+        height: 40px;
+        width: 230px;
+        background: white;
+        border-radius: 5px;
+        margin-left: 0px;
+        z-index: 10;
+    }
+
+
+    :host ::ng-deep .p-menubar-item {
+        margin-top: 12px;
+    }
+
+    :host ::ng-deep .p-menubar-submenu {
+        background: #4568DC;
+        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
+        background: linear-gradient(to bottom, #4568DC #B06AB3);
+        margin-top: 13px;
+        padding-bottom: 17px;
+    }
+}
+
+/* Estilos para pantallas medianas y pequeñas (hasta 1600px de ancho) */
+@media screen and (min-width: 1920px) {
+    :host ::ng-deep .p-menubar {
+        height: 7vh;
+        border-radius: 5px;
+        border: 1px solid;
+        margin-right: 5px;
+        z-index: 10;
+        background: #4568DC;
+        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
+        background: linear-gradient(to bottom, #4568DC #B06AB3);
+    }
+
+    :host ::ng-deep .p-menubar a {
+        text-decoration: none !important;
+        color: black;
+        font: bold;
+    }
+
+    :host ::ng-deep .p-menubar-item-content {
+        height: 40px;
+        width: 230px;
+        background: white;
+        border-radius: 5px;
+        margin-left: 0px;
+        z-index: 10;
+    }
+
+
+    :host ::ng-deep .p-menubar-item {
+        margin-top: 12px;
+    }
+
+    :host ::ng-deep .p-menubar-submenu {
+        background: #4568DC;
+        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
+        background: linear-gradient(to bottom, #4568DC #B06AB3);
+        margin-top: 13px;
+        padding-bottom: 17px;
+    }
+
+}
+
+
+img {
+    border-radius: 5px;
+}
+
+:host ::ng-deep .icon-color .pi {
+    color: black;
+    font: bold;
+}
