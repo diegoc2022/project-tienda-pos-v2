@@ -40,7 +40,6 @@ export class AjusteInventario {
   ) { }
 
   ngOnInit(): void {
-    console.log('AjusteInventario cargado');
     this.data = this.fb.group({
       codigo: [null, Validators.required],
       cantidad: [null, Validators.required]
@@ -51,6 +50,15 @@ export class AjusteInventario {
 
 
   functEditaCantidad() {
+    if (this.data.invalid) {
+      this.data.markAllAsTouched();
+      for (const key in this.data.controls) {
+        this.data.controls[key].markAsDirty();
+      }
+      this.messageService.add({ severity: 'warn', summary: 'Error:', detail: 'Para ajustar inventario debe completar ambos campos', life: 5000 });
+      return;
+    }
+
     this.habilitado = true;
     this.inventario.funct_ajusta_inventario_s(this.codigo_prod, this.data.value.cantidad).subscribe({
       next: (data: any) => {

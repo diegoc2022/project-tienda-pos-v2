@@ -1,14 +1,15 @@
 /* Estilos para pantallas medianas y pequeñas (hasta 1366px de ancho) */
 @media screen and (max-width: 1366px) {
     :host ::ng-deep .p-menubar {
-        height: 10vh;
+        height: 7vh;
+        width: 100%;
         border-radius: 5px;
         border: 1px solid;
         margin-right: 5px;
         z-index: 10;
-        background: #4568DC;
-        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
-        background: linear-gradient(to bottom, #4568DC #B06AB3);
+        background: #1e3c72;
+        background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);
+        background: linear-gradient(to right, #2a5298, #1e3c72);
     }
 
     :host ::ng-deep .p-menubar a {
@@ -17,40 +18,48 @@
     }
 
     :host ::ng-deep .p-menubar-item-content {
-        height: 40px;
-        width: 230px;
+        height: 29px;
+        width: 220px;
         background: white;
         border-radius: 5px;
         margin-left: 0px;
         z-index: 10;
+        margin-top: 5px;
     }
 
 
     :host ::ng-deep .p-menubar-item {
-        margin-top: 12px;
+        margin-top: 8px;
     }
 
     :host ::ng-deep .p-menubar-submenu {
-        background: #4568DC;
-        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
-        background: linear-gradient(to bottom, #4568DC #B06AB3);
+        background: #1e3c72;
+        background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);
+        background: linear-gradient(to right, #2a5298, #1e3c72);
         margin-top: 13px;
         padding: 10px !important;
         padding-bottom: 19px;
+    }
+
+    :host ::ng-deep .p-image img {
+        width: 29px;
+        height: 29px;
+        border-radius: 5px;
     }
 
 }
 
 @media screen and (min-width: 1440px) {
     :host ::ng-deep .p-menubar {
-        height: 8vh;
+        height: 6vh;
+        width: 100%;
         border-radius: 5px;
         border: 1px solid;
-        margin-right: 5px;
+        left: 0px;
         z-index: 10;
-        background: #4568DC;
-        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
-        background: linear-gradient(to bottom, #4568DC #B06AB3);
+        background: #1e3c72;
+        background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);
+        background: linear-gradient(to right, #2a5298, #1e3c72);
     }
 
     :host ::ng-deep .p-menubar a {
@@ -59,11 +68,12 @@
     }
 
     :host ::ng-deep .p-menubar-item-content {
-        height: 40px;
-        width: 230px;
+        height: 30px;
+        width: 200px;
         background: white;
         border-radius: 5px;
         margin-left: 0px;
+        margin-top: 5px;
         z-index: 10;
     }
 
@@ -73,25 +83,32 @@
     }
 
     :host ::ng-deep .p-menubar-submenu {
-        background: #4568DC;
-        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
-        background: linear-gradient(to bottom, #4568DC #B06AB3);
+        background: #1e3c72;
+        background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);
+        background: linear-gradient(to right, #2a5298, #1e3c72);
         margin-top: 13px;
         padding-bottom: 17px;
+    }
+
+    :host ::ng-deep .p-image img {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
     }
 }
 
 /* Estilos para pantallas medianas y pequeñas (hasta 1600px de ancho) */
 @media screen and (min-width: 1600px) {
     :host ::ng-deep .p-menubar {
-        height: 8vh;
+        height: 6vh;
+        width: 100%;
         border-radius: 5px;
         border: 1px solid;
         margin-right: 5px;
         z-index: 10;
-        background: #4568DC;
-        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
-        background: linear-gradient(to bottom, #4568DC #B06AB3);
+        background: #1e3c72;
+        background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);
+        background: linear-gradient(to right, #2a5298, #1e3c72);
     }
 
     :host ::ng-deep .p-menubar a {
@@ -100,8 +117,8 @@
     }
 
     :host ::ng-deep .p-menubar-item-content {
-        height: 40px;
-        width: 230px;
+        height: 30px;
+        width: 200px;
         background: white;
         border-radius: 5px;
         margin-left: 0px;
@@ -114,25 +131,31 @@
     }
 
     :host ::ng-deep .p-menubar-submenu {
-        background: #4568DC;
-        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
-        background: linear-gradient(to bottom, #4568DC #B06AB3);
+        background: #1e3c72;
+        background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);
+        background: linear-gradient(to right, #2a5298, #1e3c72);
         margin-top: 13px;
         padding-bottom: 17px;
+    }
+
+    :host ::ng-deep .p-image img {
+        width: 30px;
+        height: 30px;
     }
 }
 
 /* Estilos para pantallas medianas y pequeñas (hasta 1600px de ancho) */
 @media screen and (min-width: 1920px) {
     :host ::ng-deep .p-menubar {
-        height: 7vh;
+        height: 5vh;
+        width: 100%;
         border-radius: 5px;
         border: 1px solid;
         margin-right: 5px;
         z-index: 10;
-        background: #4568DC;
-        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
-        background: linear-gradient(to bottom, #4568DC #B06AB3);
+        background: #1e3c72;
+        background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);
+        background: linear-gradient(to right, #2a5298, #1e3c72);
     }
 
     :host ::ng-deep .p-menubar a {
@@ -142,7 +165,7 @@
     }
 
     :host ::ng-deep .p-menubar-item-content {
-        height: 40px;
+        height: 31px;
         width: 230px;
         background: white;
         border-radius: 5px;
@@ -156,11 +179,16 @@
     }
 
     :host ::ng-deep .p-menubar-submenu {
-        background: #4568DC;
-        background: -webkit-linear-gradient(to bottom, #4568DC, #B06AB3);
-        background: linear-gradient(to bottom, #4568DC #B06AB3);
+        background: #1e3c72;
+        background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);
+        background: linear-gradient(to right, #2a5298, #1e3c72);
         margin-top: 13px;
         padding-bottom: 17px;
+    }
+
+    :host ::ng-deep .p-image img {
+        width: 30px;
+        min-height: 30px;
     }
 
 }

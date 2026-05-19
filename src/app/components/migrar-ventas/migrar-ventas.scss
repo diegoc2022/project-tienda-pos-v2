@@ -1,0 +1,227 @@
+@media screen and (max-width: 1366px) {
+    .conten-ppal {
+        border-radius: 5px;
+        width: 99.3vw;
+        height: 91.5vh;
+        margin-left: 3px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        border: 1px solid white;
+    }
+
+    .w-full {
+        width: 17vw !important;
+        height: 42px;
+        border-radius: 5px;
+    }
+
+    :host ::ng-deep .p-datatable {
+        max-width: 99.5%;
+        min-height: 71vh !important;
+        overflow-x: auto;
+        background: #304772;
+    }
+
+}
+
+@media screen and (min-width: 1440px) {
+    .conten-ppal {
+        border-radius: 5px;
+        width: 99.4vw;
+        height: 92.6vh;
+        margin-left: 3px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        border: 1px solid white;
+    }
+
+    .w-full {
+        width: 15vw !important;
+        height: 42px;
+        border-radius: 5px;
+    }
+
+    :host ::ng-deep .p-datatable {
+        max-width: 99.5%;
+        min-height: 75vh !important;
+        overflow-x: auto;
+        background: #304772;
+    }
+
+}
+
+
+/* Estilos para pantallas medianas y pequeñas (hasta 1600px de ancho) */
+@media screen and (min-width: 1600px) {
+    .conten-ppal {
+        border-radius: 5px;
+        width: 99.5vw;
+        height: 92.6vh;
+        margin-left: 3px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 1px solid white;
+    }
+
+    .w-full {
+        width: 15vw !important;
+        height: 42px;
+        border-radius: 5px;
+    }
+
+    :host ::ng-deep .p-datatable {
+        max-width: 99.5%;
+        min-height: 74vh !important;
+        overflow-x: auto;
+        background: #304772;
+    }
+
+}
+
+/* Estilos para pantallas medianas y pequeñas (hasta 1600px de ancho) */
+@media screen and (min-width: 1920px) {
+    .conten-ppal {
+        border-radius: 5px;
+        width: 99.4vw;
+        height: 94vh;
+        margin-left: 3px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 1px solid white;
+    }
+
+    .w-full {
+        width: 12vw !important;
+        height: 42px;
+        border-radius: 5px;
+    }
+
+    :host ::ng-deep .p-datatable {
+        max-width: 99.5%;
+        min-height: 79vh !important;
+        overflow-x: auto;
+        background: #304772;
+    }
+
+}
+
+label {
+    color: white;
+}
+
+span {
+    margin-top: 3px;
+    font-size: 22px
+}
+
+:host ::ng-deep .p-button2 {
+    border-radius: 3px;
+    margin-right: .2rem;
+    color: white;
+    border-radius: 5px;
+    width: 5px;
+    height: 25px;
+}
+
+:host ::ng-deep .p-button2:hover {
+    border-radius: 5px;
+    margin-right: .2rem;
+    background-color: white;
+    color: red;
+    font: bold;
+}
+
+.red-cell {
+    background-color: rgb(247, 119, 119) !important;
+    /* Asegúrate de usar !important si es necesario */
+    color: white;
+    text-align: center;
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+    padding-top: 2px;
+
+}
+
+.green-cell {
+    background-color: #007ad9 !important;
+    /* Asegúrate de usar !important si es necesario */
+    color: white;
+    text-align: center;
+    padding-top: 2px;
+    width: 90px;
+    height: 32px;
+}
+
+.btn-option {
+    border-radius: 5px;
+    margin: 2px;
+    margin-top: -1px;
+}
+
+.input-test {
+    height: 35px;
+    margin-top: -2px;
+    width: 99.5%;
+
+}
+
+.custom-table {
+    padding: 2px;
+    left: 5px;
+}
+
+.custom-table td {
+    background: #304772;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    color: white;
+}
+
+.custom-table tH {
+    background: #304772;
+    color: white;
+    height: 5px;
+
+}
+
+.custom-table tr {
+    height: 10px;
+    /* Cambia este valor a la altura deseada */
+    border: 1px solid white;
+    /* Cambia el borde */
+}
+
+.centered {
+    text-align: center;
+    /* Centra el texto horizontalmente */
+    vertical-align: middle;
+    /* Centra el texto verticalmente */
+}
+
+.row2 {
+    text-align: right;
+}
+
+:host ::ng-deep .p-toast-message {
+    border-radius: 5px;
+    height: 100px;
+    padding: 10px;
+    background: #f7f799 !important;
+    color: rgb(107, 100, 100);
+    font: bold;
+}
+
+.span-enc {
+    color: white;
+    font: bold;
+    font-size: 18px;
+}

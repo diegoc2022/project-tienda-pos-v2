@@ -38,4 +38,14 @@ export class VinculosService {
     return this.http.delete(`${this.URL}/${this.API}/${data[0].codigoInicial}/${data[0].codigoVinculo}`);
   }
 
+  funct_retorna_vinculo_productos(codProducto: any): Observable<any> {
+    return this.http.get(`${this.URL}/${this.API}/${codProducto}`);
+  }
+
+  func_activa_asociacion_unidad_s(cod: any, estado: boolean): Observable<any> {
+    return this.http.patch(`${this.URL}/${this.API}/activar/${cod}`, {
+      "venta_por_und": estado
+    });
+  }
+
 }

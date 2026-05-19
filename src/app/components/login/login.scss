@@ -9,366 +9,532 @@ body {
 }
 
 @media screen and (max-width: 1366px) {
-    .container-fluid {
-        display: flex;
-        width: 100vw;
-        justify-content: center;
-        align-items: center;
-        background-color: rgb(61, 50, 211);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-    }
-
-    .middle {
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100vh;
-        bottom: 0;
-        text-align: center;
-        left: 0;
-        right: 0;
-        z-index: 1;
-        background: #373B44;
-        background: -webkit-linear-gradient(to top, #4286f4, #373B44);
-        background: linear-gradient(to top, #4286f4, #373B44);
-    }
-
-    .login-container {
-        border: 1px solid white;
-        flex: 1;
-        padding: 20px;
+    .content-ppal {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        max-width: 350px;
-        max-height: 96vh;
-        min-height: 96vh;
-        margin: 1% auto;
-        border-radius: 10px;
+        width: 100%;
+        height: 99vh;
+        border-radius: 5px;
         background: #373B44;
         background: -webkit-linear-gradient(to top, #4286f4, #373B44);
         background: linear-gradient(to top, #4286f4, #373B44);
-
     }
 
-    .div-1 {
+    .content-int {
+        border: 1px solid white;
+        flex: 1;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        width: 19vw;
+        max-height: 90vh;
+        margin: 5% auto;
+        gap: 5px;
+        border-radius: 10px;
+    }
+
+    .content-1 {
         border: 1px solid white;
         width: 100%;
-        max-height: 35vh;
-        background: #fff;
+        max-height: 30vh;
         border-radius: 5px;
     }
 
-    .div-2 {
-        border: 1px solid white;
-        width: 100%;
-        min-height: 57vh;
-        max-height: 57vh;
-        border-radius: 10px;
+    .item-1 {
+        margin-top: 0;
     }
 
-    .div-3 {
+    .content-2 {
+        display: flex;
+        flex-direction: column;
         background: white;
         width: 100%;
-        min-height: 57vh;
-        max-height: 57vh;
+        height: 27vh;
+        border-radius: 5px;
+    }
+
+    .item-2 {
+        margin-top: 0;
+    }
+
+    .item-2-1 {
+        margin-top: 0px;
+        height: 4.5vh;
+        padding-left: 10px;
+    }
+
+    .content-3 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid white;
+    }
+
+    .item-3 {
+        margin-top: 0;
+    }
+
+    .content-4 {
+        display: flex;
+        flex-direction: column;
+        background: white;
+        color: black;
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .item-4 {
+        margin-top: 0;
+        font-size: 11px;
+    }
+
+    :host ::ng-deep .p-image img {
+        width: 100%;
+        height: 29vh;
+        border-radius: 5px;
+    }
+
+    .label-checbox {
+        margin-top: 0px;
+        margin-left: 5px;
+        color: black;
+    }
+
+    .w-full {
+        width: 100% !important;
+        height: 35px;
+        border-radius: 5px;
+    }
+
+    :host ::ng-deep .p-inputtext {
+        width: 100% !important;
+    }
+
+}
+
+@media screen and (min-width: 1440px) {
+    .content-ppal {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 99.2vh;
+        border-radius: 5px;
+        background: #373B44;
+        background: -webkit-linear-gradient(to top, #4286f4, #373B44);
+        background: linear-gradient(to top, #4286f4, #373B44);
+    }
+
+    .content-int {
+        border: 1px solid white;
+        flex: 1;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        width: 18vw;
+        max-height: 80vh;
+        margin: 7% auto;
+        gap: 5px;
         border-radius: 10px;
     }
 
-    .image-container {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .content-1 {
+        border: 1px solid white;
         width: 100%;
         max-height: 30vh;
-        border-radius: 10px;
-        background: #0F2027;
-        background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027);
-        background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027);
-
+        border-radius: 5px;
     }
 
-    .card-border {
-        border: 1px solid blue
+    .item-1 {
+        margin-top: 0;
     }
 
-    label {
-        font-size: 13px;
-    }
-
-    .contrato {
-        flex: 1;
+    .content-2 {
         display: flex;
+        flex-direction: column;
+        background: white;
         width: 100%;
-        height: 40px;
-        text-align: left;
-        font-size: 10px;
+        height: 22vh;
+        border-radius: 5px;
     }
 
+    .item-2 {
+        margin-top: 0;
+    }
+
+    .item-2-1 {
+        margin-top: 0px;
+        height: 4.5vh;
+        padding-left: 10px;
+    }
+
+    .content-3 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid white;
+    }
+
+    .item-3 {
+        margin-top: 0;
+    }
+
+    .content-4 {
+        display: flex;
+        flex-direction: column;
+        background: white;
+        color: black;
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .item-4 {
+        margin-top: 0;
+        font-size: 11px;
+    }
+
+    :host ::ng-deep .p-image img {
+        width: 100%;
+        height: 29vh;
+        border-radius: 5px;
+    }
+
+    .label-checbox {
+        margin-top: 0px;
+        margin-left: 5px;
+        color: black;
+    }
+
+    .w-full {
+        width: 100% !important;
+        height: 35px;
+        border-radius: 5px;
+    }
+
+    :host ::ng-deep .p-inputtext {
+        width: 100% !important;
+    }
 }
 
 @media screen and (min-width: 1600px) {
-    .container-fluid {
-        display: flex;
-        width: 100vw;
-        justify-content: center;
-        align-items: center;
-        background-color: rgb(61, 50, 211);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-    }
-
-    .middle {
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100vh;
-        bottom: 0;
-        text-align: center;
-        left: 0;
-        right: 0;
-        z-index: 1;
-        background: #373B44;
-        background: -webkit-linear-gradient(to top, #4286f4, #373B44);
-        background: linear-gradient(to top, #4286f4, #373B44);
-    }
-
-    .login-container {
-        border: 1px solid white;
-        flex: 1;
-        padding: 20px;
+    .content-ppal {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        max-width: 350px;
-        max-height: 90vh;
-        min-height: 90vh;
-        margin: 3% auto;
-        border-radius: 10px;
+        width: 100%;
+        height: 99vh;
+        border-radius: 8px;
         background: #373B44;
         background: -webkit-linear-gradient(to top, #4286f4, #373B44);
         background: linear-gradient(to top, #4286f4, #373B44);
-
     }
 
-    .div-1 {
+    .content-int {
+        border: 1px solid white;
+        flex: 1;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        width: 16.5vw;
+        max-height: 80vh;
+        margin: 7% auto;
+        gap: 5px;
+        border-radius: 10px;
+    }
+
+    .content-1 {
         border: 1px solid white;
         width: 100%;
-        max-height: 35vh;
-        background: #fff;
+        max-height: 30vh;
         border-radius: 5px;
     }
 
-    .div-2 {
-        border: 1px solid white;
-        width: 100%;
-        min-height: 50vh;
-        max-height: 50vh;
-        border-radius: 10px;
+    .item-1 {
+        margin-top: 0;
     }
 
-    .div-3 {
+    .content-2 {
+        display: flex;
+        flex-direction: column;
         background: white;
         width: 100%;
-        min-height: 50vh;
-        max-height: 50vh;
-        border-radius: 10px;
+        height: 22vh;
+        border-radius: 5px;
     }
 
-    .image-container {
-        flex: 1;
+    .item-2 {
+        margin-top: 0;
+    }
+
+    .item-2-1 {
+        margin-top: 0px;
+        height: 4.5vh;
+        padding-left: 10px;
+    }
+
+    .content-3 {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
         width: 100%;
-        max-height: 30vh;
-        border-radius: 10px;
-        background: #0F2027;
-        background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027);
-        background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027);
-
+        border-radius: 5px;
+        border: 1px solid white;
     }
 
-    .card-border {
-        border: 1px solid blue
+    .item-3 {
+        margin-top: 0;
     }
 
-    label {
-        font-size: 13px;
-    }
-
-    .contrato {
-        flex: 1;
+    .content-4 {
         display: flex;
+        flex-direction: column;
+        background: white;
+        color: black;
         width: 100%;
-        height: 40px;
-        text-align: left;
-        font-size: 10px;
+        padding: 5px;
+        border-radius: 5px;
     }
 
+    .item-4 {
+        margin-top: 0;
+        font-size: 11px;
+    }
+
+    :host ::ng-deep .p-image img {
+        width: 100%;
+        height: 29vh;
+        border-radius: 5px;
+    }
+
+    .label-checbox {
+        margin-top: 0px;
+        margin-left: 5px;
+        color: black;
+    }
+
+    .w-full {
+        width: 100% !important;
+        height: 35px;
+        border-radius: 5px;
+    }
+
+    :host ::ng-deep .p-inputtext {
+        width: 100% !important;
+    }
 }
 
 @media screen and (min-width: 1920px) {
-    .container-fluid {
-        display: flex;
-        width: 100vw;
-        justify-content: center;
-        align-items: center;
-        background-color: rgb(61, 50, 211);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-    }
-
-    .middle {
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100vh;
-        bottom: 0;
-        text-align: center;
-        left: 0;
-        right: 0;
-        z-index: 1;
-        background: #373B44;
-        background: -webkit-linear-gradient(to top, #4286f4, #373B44);
-        background: linear-gradient(to top, #4286f4, #373B44);
-    }
-
-    .login-container {
-        border: 1px solid white;
-        flex: 1;
-        padding: 20px;
+    .content-ppal {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        max-width: 350px;
-        max-height: 80vh;
-        min-height: 80vh;
-        margin: 3% auto;
-        border-radius: 10px;
+        width: 100%;
+        height: 99.5vh;
+        border-radius: 8px;
         background: #373B44;
         background: -webkit-linear-gradient(to top, #4286f4, #373B44);
         background: linear-gradient(to top, #4286f4, #373B44);
-
     }
 
-    .div-1 {
+    .content-int {
+        border: 1px solid white;
+        flex: 1;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        width: 17vw;
+        max-height: 65vh;
+        margin: 8% auto;
+        gap: 5px;
+        border-radius: 10px;
+    }
+
+    .content-1 {
         border: 1px solid white;
         width: 100%;
-        max-height: 35vh;
-        background: #fff;
+        max-height: 30vh;
         border-radius: 5px;
     }
 
-    .div-2 {
-        border: 1px solid white;
-        width: 100%;
-        min-height: 40vh;
-        max-height: 40vh;
-        border-radius: 10px;
+    .item-1 {
+        margin-top: 0;
     }
 
-    .div-3 {
+    .content-2 {
+        display: flex;
+        flex-direction: column;
         background: white;
         width: 100%;
-        min-height: 40vh;
-        max-height: 40vh;
-        border-radius: 10px;
+        height: 18vh;
+        border-radius: 5px;
     }
 
-    :host ::ng-deep .image-container img {
-        flex: 1;
+    .item-2 {
+        margin-top: 0;
+    }
+
+    .item-2-1 {
+        margin-top: 0px;
+        height: 4.5vh;
+        padding-left: 10px;
+    }
+
+    .content-3 {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100% !important;
-        max-height: 30vh !important;
-        border-radius: 10px;
-        background: #0F2027;
-        background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027);
-        background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027);
-
-    }
-
-    .card-border {
-        border: 1px solid blue
-    }
-
-    label {
-        font-size: 13px;
-    }
-
-    .contrato {
-        flex: 1;
-        display: flex;
+        flex-direction: column;
         width: 100%;
-        height: 40px;
-        text-align: left;
-        font-size: 10px;
+        border-radius: 5px;
+        border: 1px solid white;
     }
 
-    .full-width {
-        width: 100% !important;
+    .item-3 {
+        margin-top: 0;
     }
 
-    .checkbox-container {
+    .content-4 {
         display: flex;
-        justify-content: flex-start;
-        /* izquierda */
-        align-items: center;
-        /* alineación vertical */
+        flex-direction: column;
+        background: white;
+        color: black;
         width: 100%;
+        padding: 5px;
+        border-radius: 5px;
     }
 
-    :host ::ng-deep .full-width-btn .p-button {
+    .item-4 {
+        margin-top: 0;
+        font-size: 14px;
+    }
+
+    :host ::ng-deep .p-image img {
+        width: 100%;
+        height: 29vh;
+        border-radius: 5px;
+    }
+
+    .label-checbox {
+        margin-top: 0px;
+        margin-left: 5px;
+        color: black;
+    }
+
+    .w-full {
         width: 100% !important;
-        display: block;
+        height: 35px;
+        border-radius: 5px;
     }
 
-    .checkbox-label {
-        margin-left: 8px;
+    :host ::ng-deep .p-inputtext {
+        width: 100% !important;
     }
 
 }
 
-.card-border {
-    border: 1px solid blue
-}
-
-label {
-    font-size: 13px;
-}
 
 @media (max-width: 768px) {
-    .container-fluid {
+    .content-ppal {
+        display: flex;
         flex-direction: column;
         width: 100%;
+        height: 99vh;
+        border-radius: 8px;
+        background: #373B44;
+        background: -webkit-linear-gradient(to top, #4286f4, #373B44);
+        background: linear-gradient(to top, #4286f4, #373B44);
     }
 
-    .login-container {
+    .content-int {
+        border: 1px solid white;
+        flex: 1;
+        padding: 15px;
+        display: flex;
         flex-direction: column;
-        min-width: 60vw;
-        max-width: 400px;
-        min-height: 80vh;
-        min-height: 300px;
-        margin-top: 17%;
+        width: 80vw;
+        max-height: 80vh;
+        margin: 8% auto;
+        gap: 5px;
         border-radius: 10px;
     }
 
-    .image-container {
-        border-radius: 8px 8px 0 0;
-        height: 200px;
-        border-radius: 10px;
+    .content-1 {
+        border: 1px solid white;
+        width: 100%;
+        max-height: 30vh;
+        border-radius: 5px;
+        background: white;
     }
 
-    .div-1 {
-        border-radius: 10px;
+    .item-1 {
+        margin-top: 0;
+        min-width: 100%;
     }
 
-    .contrato {
-        margin-top: 10px;
+    .content-2 {
+        display: flex;
+        flex-direction: column;
+        background: white;
+        width: 100%;
+        min-height: 18vh;
+        border-radius: 5px;
+    }
+
+    .item-2 {
+        margin-top: 0;
+    }
+
+    .item-2-1 {
+        margin-top: 0px;
+        height: 4.5vh;
+        padding-left: 10px;
+    }
+
+    .content-3 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid white;
+    }
+
+    .item-3 {
+        margin-top: 0;
+    }
+
+    .content-4 {
+        display: flex;
+        flex-direction: column;
+        background: white;
+        color: black;
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .item-4 {
+        margin-top: 0;
+        font-size: 14px;
+    }
+
+    :host ::ng-deep .p-image img {
+        width: 100%;
+        height: 29vh;
+        border-radius: 5px;
+    }
+
+    .label-checbox {
+        margin-top: 0px;
+        margin-left: 5px;
+        color: black;
+    }
+
+    .w-full {
+        width: 100% !important;
+        height: 35px;
+        border-radius: 5px;
+    }
+
+    :host ::ng-deep .p-inputtext {
+        width: 100% !important;
     }
 }
 
@@ -383,13 +549,6 @@ label {
             color: #2c1e30;
         }
     }
-}
-
-
-
-.my-checkbox .p-checkbox-label {
-    margin-left: 10px;
-    /* Ajusta el valor según sea necesario */
 }
 
 :host ::ng-deep .login-toast {

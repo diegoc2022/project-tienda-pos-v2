@@ -11,6 +11,11 @@ import { ImageModule } from 'primeng/image';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { IftaLabelModule } from 'primeng/iftalabel';
+import { BdService, Productos, Vinculos } from '../dexie/bd.service';
+import { forkJoin } from 'rxjs';
+import { ProductosService } from '../productos/services/productos.service';
+import { VinculosService } from '../vinculos/services/vinculos.service';
+
 
 
 @Component({
@@ -30,7 +35,7 @@ import { IftaLabelModule } from 'primeng/iftalabel';
     InputIconModule,
     IftaLabelModule
   ],
-  providers: [MessageService, LoginService],
+  providers: [MessageService, LoginService, BdService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
@@ -44,16 +49,16 @@ export class Login {
   visible: boolean = false;
   progress = signal(0);
   interval: any = null;
-  messageService = inject(MessageService);
-
-
+  private message = inject(MessageService);
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private loginService: LoginService
-    //private db: BdServiceService,
-    //private products: RetornaProductoService
+    private loginService: LoginService,
+    private db: BdService,
+    private products: ProductosService,
+    private vinculos: VinculosService,
+
   ) { }
 
 
@@ -67,7 +72,7 @@ export class Login {
   }
 
 
-  async funcLogin() {
+  async func_inicia_sesion() {
     const logindata = {
       user: this.formLogin.value.user,
       clave: this.formLogin.value.passw
@@ -87,12 +92,62 @@ export class Login {
       next: data => {
         const dataObj = JSON.parse(JSON.stringify(data));
         if (this.onChecked == false) {
-          this.messageService.clear('confirm');
+          this.message.clear('confirm');
           localStorage.setItem('user', dataObj.data.user);
           localStorage.setItem('token', dataObj.data.token);
           this.router.navigate(['/menu']);
-          console.log("Token: ", dataObj.data.token);
 
+          // Cargamos los productos en la base de datos IndexedDB
+          forkJoin({
+            productos: this.products.funct_retorna_full_productos(),
+            vinculos: this.vinculos.funct_retorna_full_vinculos_s()
+          }).subscribe({
+            next: async ({ productos, vinculos }) => {
+              await this.db.productos.clear();
+              await this.db.vinculos.clear();
+              try {
+
+                // 🔥 MAPEAR PRODUCTOS (solo lo que necesitas)
+                const productosMap: Productos[] = productos.map((p: any) => ({
+                  codProd: p.codProd,
+                  descripcion: p.descripcion,
+                  precio_compra: p.precio_compra,
+                  precio_venta: p.precio_venta,
+                  existencia: p.existencia
+                }));
+
+                // 🔥 MAPEAR VINCULOS
+                const vinculosMap: Vinculos[] = Array.isArray(vinculos)
+                  ? vinculos.map((v: any) => ({
+                    codigoInicial: v.codigoInicial,
+                    codigoVinculo: v.codigoVinculo
+                  }))
+                  : [];
+
+                // 🔒 GUARDAR EN TRANSACCIÓN
+                await this.db.transaction('rw', this.db.productos, this.db.vinculos, async () => {
+                  await this.db.productos.bulkPut(productosMap);
+                  await this.db.vinculos.bulkPut(vinculosMap);
+
+                });
+
+                const prod = await this.db.productos.toArray();
+                localStorage.setItem('prod', prod.length.toString())
+
+                const vinc = await this.db.vinculos.toArray();
+                localStorage.setItem('vinc', vinc.length.toString())
+
+                console.log('✔️ Datos sincronizados correctamente');
+
+              } catch (error) {
+                console.error('❌ Error guardando en Dexie', error);
+              }
+
+            },
+            error: (err: any) => {
+              console.error('❌ Error en API', err);
+            }
+          });
 
         } else {
           localStorage.setItem('user', dataObj.data.user);
@@ -101,7 +156,8 @@ export class Login {
         }
 
       }, error: (err) => {
-        this.messageService.clear('confirm');
+        this.message.clear('confirm');
+        this.message.add({ severity: 'error', summary: 'Error:', detail: 'Credenciales incorrectas', life: 3000 });
         console.error('Error:', err);
       },
     })
@@ -123,7 +179,7 @@ export class Login {
   }
 
   showSppiner() {
-    this.messageService.add({
+    this.message.add({
       key: 'confirm',
       severity: 'info',
       sticky: true,
