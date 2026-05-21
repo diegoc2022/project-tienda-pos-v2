@@ -266,11 +266,12 @@ export class FormVentas implements OnInit {
     }
   }
 
-  functEditaVentas(product: any) {
-    this.ventas.funct_edita_existencia_s(product).subscribe({
+  funct_edita_cantidad_venta(product: any) {
+    this.ventas.funct_edita_cantidad_venta_s(product).subscribe({
       next: data => {
         this.funct_retorna_ventas();
         this.functInpuFocus();
+        this.cd.detectChanges();
       }
     })
   }

@@ -31,7 +31,7 @@ export class OtrasVentas {
   @Input() visible: boolean = false;
   @Output() visibleChange = new EventEmitter<boolean>();
   @ViewChild(FormVentas) venta_forms!: FormVentas;
-  @ViewChild('inputText4', { read: ElementRef }) numInput?: InputNumber;
+  @ViewChild('precio_venta') numInput?: InputNumber;
   data: FormGroup = new FormGroup({});
   data2: FormGroup = new FormGroup({});
   objData: any[] = [];
@@ -73,7 +73,7 @@ export class OtrasVentas {
     this.cdr.detectChanges();
   }
 
-  functRetornaProducto() {
+  funct_retorna_producto() {
     this.vinculos.funct_retorna_vinculo_productos(this.data.value.dlCodProducto).subscribe({
       next: (result: any) => {
         this.objData.length = 0;

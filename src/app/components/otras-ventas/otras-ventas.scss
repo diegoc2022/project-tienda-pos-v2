@@ -120,6 +120,13 @@
         font-size: 1.5rem;
     }
 
+    .input_ventas {
+        border-color: black;
+        width: 11vw;
+        height: 4vh !important;
+        font-size: 1.1rem;
+    }
+
 }
 
 
@@ -184,6 +191,13 @@
         font-size: 1.5rem;
     }
 
+    .input_ventas {
+        border-color: black;
+        width: 11vw;
+        height: 4vh !important;
+        font-size: 1.1rem;
+    }
+
 }
 
 /* Estilos para pantallas medianas y pequeñas (hasta 1600px de ancho) */
@@ -244,7 +258,14 @@
         border-color: black;
         width: 11vw;
         height: 4vh !important;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+    }
+
+    .input_ventas {
+        border-color: black;
+        width: 11vw;
+        height: 4vh !important;
+        font-size: 1.2rem;
     }
 
 }

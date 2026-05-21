@@ -69,9 +69,9 @@ export class VentasSerivice {
     return this.http.delete(`${this.URL}/${this.API3}/ventas-temp/eliminar-todo`);
   }
 
-  funct_edita_existencia_s(data: any) {
+  funct_edita_cantidad_venta_s(data: any) {
     this.subtotal = data.cantidad * data.precio_venta;
-    return this.http.patch(`${this.URL}/${this.API}/${data.id}/${data.codProd}`, {
+    return this.http.patch(`${this.URL}/${this.API3}/${data.id}/${data.codProd}`, {
       "cantidad": data.cantidad,
       "subtotal": this.subtotal
     });

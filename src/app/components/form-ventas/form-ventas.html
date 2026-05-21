@@ -93,10 +93,10 @@
                                 <p-cellEditor>
                                     <ng-template pTemplate="input">
                                         <form [formGroup]="data2">
-                                            <p-inputNumber [(ngModel)]="rowData.cantidad"
-                                                [style]="{'width':'3vw','height':'4vh'}"
-                                                (keydown.enter)="functEditaVentas(rowData)"
-                                                formControlName="cantidad"></p-inputNumber>
+                                            <input type="number" pInputText [(ngModel)]="rowData.cantidad"
+                                                class="input-cantidad" formControlName="cantidad"
+                                                (keydown.enter)="funct_edita_cantidad_venta(rowData)"
+                                                (blur)="funct_edita_cantidad_venta(rowData)" />
                                         </form>
                                     </ng-template>
                                     <ng-template pTemplate="output">

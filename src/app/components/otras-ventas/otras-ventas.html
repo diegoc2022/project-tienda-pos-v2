@@ -2,7 +2,7 @@
     styleClass="mi-dialogo" [modal]="true" [closable]="false">
     <div class="content-1">
         <div class="item-1">
-            <form [formGroup]="data" (ngSubmit)="functRetornaProducto()">
+            <form [formGroup]="data" (ngSubmit)="funct_retorna_producto()">
                 <label for="codigoProd" class="block">Digite código</label>
                 <input #codigoProd type="text" pInputText class="p-inputtext-sm"
                     [style]="{'width':'8vw','height':'5vh'}" formControlName="dlCodProducto" autofocus
@@ -41,10 +41,9 @@
                 </div>
                 <div class="item-2">
                     <div class="flex flex-col">
-                        <label for="inputText4" class="block">Agregue total</label>
-                        <p-inputnumber #inputText4 inputId="inputText4" formControlName="precio_venta" autofocus
-                            mode="currency" currency="USD" locale="en-US" [minFractionDigits]="0"
-                            [maxFractionDigits]="0" (keydown.enter)="functRegistraVenta();" autofocu />
+                        <label for="precio_venta" class="block">Agregue total</label>
+                        <input type="number" pInputText id="precio_venta" formControlName="precio_venta"
+                            (keydown.enter)="functRegistraVenta();" autofocus class="input_ventas" />
                     </div>
                 </div>
             </div>
