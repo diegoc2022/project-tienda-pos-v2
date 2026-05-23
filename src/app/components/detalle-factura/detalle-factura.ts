@@ -62,9 +62,6 @@ export class DetalleFactura implements OnInit {
     this.formventas.funct_retorna_factura_c();
   }
 
-  ngAfterViewInit() {
-    this.formventas.funct_retorna_ventas();
-  }
 
   functRetornaVentas() {
     this.venta_total = 0;
@@ -132,7 +129,7 @@ export class DetalleFactura implements OnInit {
           this.formventas.functInpuFocus();
         }, 1000)
         this.total_efectivo = 0;
-
+        this.cdr.detectChanges();
       },
       error: (error: any) => {
         console.error("Error:", error);

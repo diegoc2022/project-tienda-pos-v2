@@ -76,11 +76,9 @@ export class ConsultarPagos {
     if (this.data.value.cliente != null && this.data.value.codigo_venta != "") {
       this.pagos_s.funct_consulta_ventas_x_cliente(this.data.value).subscribe({
         next: (data: any) => {
-          const objData = JSON.stringify(data);
-          const obj = JSON.parse(objData);
           this.consumo_actual = 0;
-          for (let index = 0; index < obj.length; index++) {
-            this.consumo_actual += obj[index].subtotal
+          for (let index = 0; index < data.length; index++) {
+            this.consumo_actual += data[index].subtotal
           }
 
           this.pagos_s.funct_retorna_pagos_s(this.data.value).subscribe({
@@ -107,7 +105,7 @@ export class ConsultarPagos {
                 }
               } else {
                 this.message.clear();
-                this.message.add({ severity: 'warn', summary: 'Informativo:', detail: 'Este cliente no tiene pagos registrados con este id ventas: ' + this.data.value.codigo_venta, life: 5000 });
+                this.message.add({ severity: 'warn', summary: 'Informativo:', detail: 'El cliente seleccionado no tiene pagos registrados con este id ventas: ' + this.data.value.codigo_venta, life: 5000 });
               }
               this.cdr.detectChanges();
             }

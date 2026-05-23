@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -52,7 +52,8 @@ export class ConsultarConsumos {
     private fb: FormBuilder,
     private r_cliente: ClientesService,
     private message: MessageService,
-    private pagos_c: PagosConsumosServices
+    private pagos_c: PagosConsumosServices,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -66,11 +67,9 @@ export class ConsultarConsumos {
   funct_retorna_clientes_c() {
     this.r_cliente.funct_retorna_clientes_s().subscribe({
       next: (data: any) => {
-        const objData = JSON.stringify(data);
-        const obj = JSON.parse(objData);
         this.clientes = [];
-        for (let index = 0; index < obj.length; index++) {
-          this.clientes.push(obj[index]);
+        for (let index = 0; index < data.length; index++) {
+          this.clientes.push(data[index]);
         }
       }
     })
@@ -80,14 +79,12 @@ export class ConsultarConsumos {
     if (data.value != null) {
       this.r_cliente.funct_retorna_one_cliente(data.value).subscribe({
         next: (data: any) => {
-          const objData = JSON.stringify(data);
-          const obj = JSON.parse(objData);
           this.productos = [];
-          for (let index = 0; index < obj.length; index++) {
-            this.codigo_venta = obj[index].codigo_venta;
-            this.nombre = obj[index].nombre;
-            this.cedula = obj[index].codigo_cliente;
-            this.data.get('codigo_venta')?.setValue(parseInt(obj[index].codigo_venta));
+          for (let index = 0; index < data.length; index++) {
+            this.codigo_venta = data[index].codigo_venta;
+            this.nombre = data[index].nombre;
+            this.cedula = data[index].codigo_cliente;
+            this.data.get('codigo_venta')?.setValue(parseInt(data[index].codigo_venta));
           }
         }
       })
@@ -108,15 +105,14 @@ export class ConsultarConsumos {
 
     this.pagos_c.funct_consulta_ventas_x_cliente(this.data.value).subscribe({
       next: (data: any) => {
-        const objData = JSON.stringify(data);
-        const obj = JSON.parse(objData);
         this.productos = [];
         this.monto_total = 0;
-        if (obj.length > 0) {
-          for (let index = 0; index < obj.length; index++) {
-            this.monto_total += obj[index].subtotal;
-            this.productos.push(obj[index]);
+        if (data.length > 0) {
+          for (let index = 0; index < data.length; index++) {
+            this.monto_total += data[index].subtotal;
+            this.productos.push(data[index]);
           }
+          this.cdr.detectChanges();
         } else {
           this.message.add({ severity: 'warn', summary: 'Error:', detail: 'Este cliente aún no tiene consumo registrado con este id ventas: ' + this.data.value.codigo_venta, life: 5000 });
         }

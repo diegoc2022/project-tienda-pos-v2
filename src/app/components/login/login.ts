@@ -11,12 +11,6 @@ import { ImageModule } from 'primeng/image';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { IftaLabelModule } from 'primeng/iftalabel';
-import { BdService, Productos, Vinculos } from '../dexie/bd.service';
-import { forkJoin } from 'rxjs';
-import { ProductosService } from '../productos/services/productos.service';
-import { VinculosService } from '../vinculos/services/vinculos.service';
-
-
 
 @Component({
   selector: 'app-login',
@@ -35,7 +29,7 @@ import { VinculosService } from '../vinculos/services/vinculos.service';
     InputIconModule,
     IftaLabelModule
   ],
-  providers: [MessageService, LoginService, BdService],
+  providers: [MessageService, LoginService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
@@ -54,10 +48,7 @@ export class Login {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private loginService: LoginService,
-    private db: BdService,
-    private products: ProductosService,
-    private vinculos: VinculosService,
+    private loginService: LoginService
 
   ) { }
 
@@ -96,59 +87,6 @@ export class Login {
           localStorage.setItem('user', dataObj.data.user);
           localStorage.setItem('token', dataObj.data.token);
           this.router.navigate(['/menu']);
-
-          // Cargamos los productos en la base de datos IndexedDB
-          forkJoin({
-            productos: this.products.funct_retorna_full_productos(),
-            vinculos: this.vinculos.funct_retorna_full_vinculos_s()
-          }).subscribe({
-            next: async ({ productos, vinculos }) => {
-              await this.db.productos.clear();
-              await this.db.vinculos.clear();
-              try {
-
-                // 🔥 MAPEAR PRODUCTOS (solo lo que necesitas)
-                const productosMap: Productos[] = productos.map((p: any) => ({
-                  codProd: p.codProd,
-                  descripcion: p.descripcion,
-                  precio_compra: p.precio_compra,
-                  precio_venta: p.precio_venta,
-                  existencia: p.existencia
-                }));
-
-                // 🔥 MAPEAR VINCULOS
-                const vinculosMap: Vinculos[] = Array.isArray(vinculos)
-                  ? vinculos.map((v: any) => ({
-                    codigoInicial: v.codigoInicial,
-                    codigoVinculo: v.codigoVinculo
-                  }))
-                  : [];
-
-                // 🔒 GUARDAR EN TRANSACCIÓN
-                await this.db.transaction('rw', this.db.productos, this.db.vinculos, async () => {
-                  await this.db.productos.bulkPut(productosMap);
-                  await this.db.vinculos.bulkPut(vinculosMap);
-
-                });
-
-                const prod = await this.db.productos.toArray();
-                localStorage.setItem('prod', prod.length.toString())
-
-                const vinc = await this.db.vinculos.toArray();
-                localStorage.setItem('vinc', vinc.length.toString())
-
-                console.log('✔️ Datos sincronizados correctamente');
-
-              } catch (error) {
-                console.error('❌ Error guardando en Dexie', error);
-              }
-
-            },
-            error: (err: any) => {
-              console.error('❌ Error en API', err);
-            }
-          });
-
         } else {
           localStorage.setItem('user', dataObj.data.user);
           localStorage.setItem('token', dataObj.data.toke);

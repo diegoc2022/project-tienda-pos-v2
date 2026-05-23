@@ -3,7 +3,6 @@ import { Subscription, Table } from 'dexie';
 import { AperturaCajaService } from '../apertura-caja/services/apertura-caja.service';
 import { MessageService } from 'primeng/api';
 import { VentasSerivice } from '../form-ventas/services/ventas.serivice';
-import { ComprasService } from '../compras/services/compras.service';
 import { VinculosService } from '../vinculos/services/vinculos.service';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
@@ -38,7 +37,6 @@ import { FormVentas } from '../form-ventas/form-ventas';
 export class BuscaProductos {
   @Input() visible: boolean = false;
   @Output() visibleChange = new EventEmitter<boolean>();
-  @ViewChild(FormVentas) venta_forms!: FormVentas;
   @ViewChild('dt2') dt2?: Table;
   dataBuscaProductos: any[] = [];
   selectedProduct1?: any[];
@@ -61,7 +59,8 @@ export class BuscaProductos {
     private ventas: VentasSerivice,
     private apertura: AperturaCajaService,
     private productos: ProductosService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private formventas: FormVentas
   ) { }
 
   ngOnInit() {
@@ -95,8 +94,8 @@ export class BuscaProductos {
               const obj = JSON.parse(JSON.stringify(data));
               this.ventas.funct_registra_ventas_temp(result[0].producto, this.origen_ventas, this.openventas, obj.id_caja, factura).subscribe({
                 next: (resp: any) => {
-                  //this.venta_forms.funct_retorna_ventas();
-                  //this.venta_forms.functInpuFocus();
+                  this.formventas.funct_retorna_ventas();
+                  this.formventas.functInpuFocus();
                   this.visible = false;
                   this.message.add({ severity: 'info', summary: 'Product Selected', detail: 'Acaba de agregar un producto mas en la lista de compras', life: 3000 });
                 }, error: (any: any) => {
@@ -105,6 +104,7 @@ export class BuscaProductos {
               });
             }
           })
+          this.cdr.detectChanges();
 
         } else {
           this.message.add({ severity: 'error', summary: 'Product Selected', detail: 'El producto que intenta vender no existe en base de datos', life: 3000 });

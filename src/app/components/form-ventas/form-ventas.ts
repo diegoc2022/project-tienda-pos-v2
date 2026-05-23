@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
-import { EMPTY, forkJoin, from, Subscription, switchMap, tap } from 'rxjs';
+import { Subscription, switchMap, tap } from 'rxjs';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { VinculosService } from '../vinculos/services/vinculos.service';
@@ -8,7 +8,6 @@ import { ClientesService } from '../clientes/services/clientes.service';
 import { PagosConsumosServices } from '../pagos-consumos/services/pagos-consumos.services';
 import Swal, { SweetAlertOptions } from 'sweetalert2';
 import { VentasSerivice } from './services/ventas.serivice';
-import { BdService } from '../dexie/bd.service';
 import { InventarioService } from '../inventario/services/inventario.service';
 import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
@@ -103,9 +102,8 @@ export class FormVentas implements OnInit {
     private fb: FormBuilder,
     private r_cliente: ClientesService,
     private pagos_c: PagosConsumosServices,
-    private db: BdService,
     private inventario: InventarioService,
-    private cd: ChangeDetectorRef
+    private cdr: ChangeDetectorRef
 
   ) {
 
@@ -174,80 +172,49 @@ export class FormVentas implements OnInit {
           }
 
         });
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
       }, error: (error) => {
         console.error('Error al retornar ventas:', error);
       }
     });
   }
 
-  funct_retorna_productos_indexieBD() {
+  funct_retorna_producto(): void {
     const codigo = this.data.value.codProducto;
-    from(this.db.obtenerProductosDesdeScan(codigo)).pipe(
-      switchMap(productos => {
-        if (!productos?.length) {
-          this.message.add({
-            severity: 'error',
-            summary: 'Error:',
-            detail: 'El producto que intenta vender no existe o no se encuentra asociado',
-            life: 5000
-          });
-          return EMPTY;
-        }
-        const id_caja = localStorage.getItem('id_caja');
-        const productoData = productos[0];
-        return this.ventas.funct_registra_ventas_temp(
-          productoData,
-          this.origen_venta,
-          this.openventas,
-          id_caja, // Asegúrate que esté disponible
-          this.factura
-        );
-      }),
-      switchMap(() => this.ventas.funct_retorna_ventas_temp())
-    ).subscribe({
-      next: (carrito: any) => {
-        if (!Array.isArray(carrito)) {
-          console.error('La respuesta no es un array:', carrito);
+
+    if (!codigo) {
+      return;
+    }
+
+    this.vinculos.funct_retorna_vinculo_productos(codigo).subscribe({
+      next: (response: any) => {
+        if (response.statusCode === 404 || !response?.length) {
+          this.message.add({ severity: 'error', summary: 'Error:', detail: 'El producto que intenta vender no existe o no se encuentra asociado', life: 3000 });
           return;
         }
+        const producto = response[0].producto;
+        this.producto_unidad = [];
+        this.idApertCaja = localStorage.getItem('id_caja');
 
-        // 🔹 Procesamiento en un solo bucle
-        const abiertos: any[] = [];
-        let total_venta = 0;
-        let cantidadCero = false;
-        let precioIncorrecto = false;
-
-        for (const item of carrito) {
-          if (item.estado === 'abierto1') {
-            abiertos.push(item);
-            total_venta += item.subtotal;
-            if (item.cantidad <= 0) cantidadCero = true;
-            if (item.precio_compra > item.precio_venta) precioIncorrecto = true;
+        this.ventas.funct_registra_ventas_temp(producto, this.origen_venta, this.openventas, this.idApertCaja, this.factura).subscribe({
+          next: (ventaResponse: any) => {
+            this.data.patchValue({
+              codProducto: ''
+            });
+            this.funct_retorna_ventas();
+            this.functInpuFocus();
+            this.cdr.detectChanges();
+          }, error: (error) => {
+            console.error('Error registrando venta:', error);
+            this.message.add({ severity: 'error', summary: 'Error', detail: 'No fue posible registrar la venta', life: 3000 });
           }
-        }
-
-        // Ordenar solo al final
-        this.products = abiertos.sort((a, b) => b.id - a.id);
-        this.total_articulos = abiertos.length;
-        this.total_venta = total_venta;
-
-        // Activar flags si hay errores
-        if (cantidadCero || precioIncorrecto) {
-          this.habilitado = true;
-          this.cantidad = true;
-        }
-
-        this.data.reset();
-        this.functInpuFocus();
-        this.cd.detectChanges();
-      },
-      error: (err) => {
-        console.error('💥 Error en flujo', err);
+        });
+      }, error: (error) => {
+        console.error('Error consultando producto:', error);
+        this.message.add({ severity: 'error', summary: 'Error', detail: 'El producto que intenta vender no existe o no se encuentra asociado', life: 3000 });
       }
     });
   }
-
 
   funct_retorna_factura_c() {
     this.secuencia.funct_retorna_factura_s().subscribe({
@@ -256,7 +223,7 @@ export class FormVentas implements OnInit {
           this.factura = 0;
           this.factura = id.num_secuencia + 1;
           localStorage.setItem('factura', this.factura);
-          this.cd.detectChanges();
+          this.cdr.detectChanges();
           console.log("Prueba",);
         }, 1000)
       }
@@ -271,7 +238,7 @@ export class FormVentas implements OnInit {
       next: data => {
         this.funct_retorna_ventas();
         this.functInpuFocus();
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
       }
     })
   }
@@ -326,7 +293,7 @@ export class FormVentas implements OnInit {
 
   funct_dialog_detalle_factura() {
     this.mostrarDialog5 = false;
-    this.cd.detectChanges();
+    this.cdr.detectChanges();
     this.mostrarDialog5 = true;
   }
 
@@ -336,19 +303,19 @@ export class FormVentas implements OnInit {
 
   funt_dialog_busca_productos() {
     this.mostrarDialog = false;
-    this.cd.detectChanges();
+    this.cdr.detectChanges();
     this.mostrarDialog = true;
   }
 
   funct_dialog_otras_ventas() {
     this.mostrarDialog2 = false;
-    this.cd.detectChanges();
+    this.cdr.detectChanges();
     this.mostrarDialog2 = true;
   }
 
   funct_dialog_reimprimir_factura() {
     this.mostrarDialog4 = false;
-    this.cd.detectChanges();
+    this.cdr.detectChanges();
     this.mostrarDialog4 = true;
   }
 
@@ -466,7 +433,7 @@ export class FormVentas implements OnInit {
     if (event.checked == true) {
       this.isChecked = true;
       this.mostrarDialog6 = false;
-      this.cd.detectChanges();
+      this.cdr.detectChanges();
       this.mostrarDialog6 = true;
 
       if (this.cantidad == true) {
@@ -564,55 +531,6 @@ export class FormVentas implements OnInit {
       }
     });
   }
-
-
-  /* funct_actualiza_data_indexieBD() {
-    // Cargamos los productos en la base de datos IndexedDB
-    forkJoin({
-      productos: this.productos.funct_retorna_todos_los_productos(),
-      vinculos: this.vinculos.funct_retorna_full_vinculos_s()
-    }).subscribe({
-      next: async ({ productos, vinculos }) => {
-        await this.db.productos.clear();
-        await this.db.vinculos.clear();
-        try {
-
-          // 🔥 MAPEAR PRODUCTOS (solo lo que necesitas)
-          const productosMap: Productos[] = productos.map((p: any) => ({
-            codProd: p.codProd,
-            descripcion: p.descripcion,
-            precio_compra: p.precio_compra,
-            precio_venta: p.precio_venta,
-            existencia: p.existencia
-          }));
-
-          // 🔥 MAPEAR VINCULOS
-          const vinculosMap: Vinculos[] = vinculos.map((v: any) => ({
-            codigoInicial: v.codigoInicial,
-            codigoVinculo: v.codigoVinculo
-          }));
-
-          // 🔒 GUARDAR EN TRANSACCIÓN
-          await this.db.transaction('rw', this.db.productos, this.db.vinculos, async () => {
-
-            await this.db.productos.bulkPut(productosMap);
-            await this.db.vinculos.bulkPut(vinculosMap);
-
-          });
-
-          console.log('✔️ Datos sincronizados correctamente');
-
-        } catch (error) {
-          console.error('❌ Error guardando en Dexie', error);
-        }
-
-      },
-      error: (err: any) => {
-        console.error('❌ Error en API', err);
-      }
-    });
-
-  } */
 
 
   funct_retorna_one_cliente_c(data: any) {

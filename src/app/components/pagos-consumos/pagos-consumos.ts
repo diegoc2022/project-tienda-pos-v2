@@ -245,7 +245,7 @@ export class PagosConsumos implements OnInit {
         }
       }
     } else {
-      this.message.add({ severity: 'warn', summary: 'Advertencia:', detail: 'Para realizar un pago, prinero dede consultar los consumos del cliente', life: 5000 });
+      this.message.add({ severity: 'error', summary: 'Error:', detail: 'Para realizar un pago, prinero dede consultar los consumos del cliente y elegir un concepto', life: 5000 });
     }
   }
 

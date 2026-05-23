@@ -13,16 +13,53 @@
 
     .w-full {
         width: 17vw !important;
-        height: 42px;
+        height: 40px;
         border-radius: 5px;
+        margin-top: 2px;
     }
 
     :host ::ng-deep .p-datatable {
         max-width: 99.5%;
-        min-height: 71vh !important;
+        height: 71.5vh !important;
         overflow-x: auto;
         background: #304772;
     }
+
+    .div-content-1 {
+        border-radius: 5px;
+        width: 100%;
+        max-height: 74vh;
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+    }
+
+    .item-1 {
+        margin: 0 !important;
+        padding: 5px;
+        border-radius: 5px;
+        background: #e7e5e5;
+        min-height: 73.5vh;
+    }
+
+    .div-content-2 {
+        border-radius: 5px;
+        width: 100%;
+        min-height: 9vh;
+        display: flex;
+        flex-direction: row;
+        border: 1px solid white;
+    }
+
+    .item-2 {
+        margin: 0 !important;
+        padding: 5px;
+        border-radius: 5px;
+        text-align: right;
+        width: 100%;
+        height: 5.5vh;
+    }
+
 
 }
 
@@ -41,15 +78,51 @@
 
     .w-full {
         width: 15vw !important;
-        height: 42px;
+        height: 40px;
         border-radius: 5px;
+        margin-top: 3px;
     }
 
     :host ::ng-deep .p-datatable {
-        max-width: 99.5%;
-        min-height: 75vh !important;
+        width: 99.5%;
+        height: 76vh !important;
         overflow-x: auto;
         background: #304772;
+    }
+
+    .div-content-1 {
+        border-radius: 5px;
+        width: 100%;
+        height: 78vh !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .item-1 {
+        margin: 0 !important;
+        padding: 5px;
+        border-radius: 5px;
+        background: #e7e5e5;
+        min-height: 78vh;
+    }
+
+    .div-content-2 {
+        border-radius: 5px;
+        width: 100%;
+        min-height: 8vh;
+        display: flex;
+        flex-direction: row;
+        border: 1px solid white;
+        margin-top: 1px;
+    }
+
+    .item-2 {
+        margin: 0 !important;
+        padding: 5px;
+        border-radius: 5px;
+        text-align: right;
+        width: 100%;
+        height: 5.5vh;
     }
 
 }
@@ -71,15 +144,51 @@
 
     .w-full {
         width: 15vw !important;
-        height: 42px;
+        height: 40px;
         border-radius: 5px;
     }
 
     :host ::ng-deep .p-datatable {
-        max-width: 99.5%;
-        min-height: 74vh !important;
+        width: 99.5%;
+        height: 75.5vh !important;
         overflow-x: auto;
         background: #304772;
+    }
+
+    .div-content-1 {
+        border-radius: 5px;
+        width: 100%;
+        max-height: 78vh;
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+    }
+
+    .item-1 {
+        margin: 0 !important;
+        padding: 5px;
+        border-radius: 5px;
+        background: #e7e5e5;
+        min-height: 77vh;
+    }
+
+    .div-content-2 {
+        border-radius: 5px;
+        width: 100%;
+        min-height: 7.5vh;
+        display: flex;
+        flex-direction: row;
+        border: 1px solid white
+    }
+
+    .item-2 {
+        margin: 0 !important;
+        padding: 5px;
+        border-radius: 5px;
+        align-items: center;
+        text-align: right;
+        width: 100%;
+        height: 6vh;
     }
 
 }
@@ -100,78 +209,57 @@
 
     .w-full {
         width: 12vw !important;
-        height: 42px;
+        height: 45px;
         border-radius: 5px;
+        padding-top: 1px;
     }
 
     :host ::ng-deep .p-datatable {
-        max-width: 99.5%;
-        min-height: 79vh !important;
+        width: 99.5%;
+        height: 79.5vh !important;
         overflow-x: auto;
         background: #304772;
+    }
+
+    .div-content-1 {
+        border-radius: 5px;
+        width: 100%;
+        min-height: 82vh;
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+    }
+
+    .item-1 {
+        margin: 0 !important;
+        padding: 5px;
+        border-radius: 5px;
+        background: #e7e5e5;
+        min-height: 81vh;
+    }
+
+    .div-content-2 {
+        border-radius: 5px;
+        width: 100%;
+        min-height: 6.5vh;
+        display: flex;
+        flex-direction: row;
+        border: 1px solid white;
+    }
+
+    .item-2 {
+        margin: 0 !important;
+        padding: 5px;
+        border-radius: 5px;
+        text-align: right;
+        width: 100%;
+        height: 5vh;
     }
 
 }
 
 label {
     color: white;
-}
-
-span {
-    margin-top: 3px;
-    font-size: 22px
-}
-
-:host ::ng-deep .p-button2 {
-    border-radius: 3px;
-    margin-right: .2rem;
-    color: white;
-    border-radius: 5px;
-    width: 5px;
-    height: 25px;
-}
-
-:host ::ng-deep .p-button2:hover {
-    border-radius: 5px;
-    margin-right: .2rem;
-    background-color: white;
-    color: red;
-    font: bold;
-}
-
-.red-cell {
-    background-color: rgb(247, 119, 119) !important;
-    /* Asegúrate de usar !important si es necesario */
-    color: white;
-    text-align: center;
-    width: 90px;
-    height: 30px;
-    border-radius: 5px;
-    padding-top: 2px;
-
-}
-
-.green-cell {
-    background-color: #007ad9 !important;
-    /* Asegúrate de usar !important si es necesario */
-    color: white;
-    text-align: center;
-    padding-top: 2px;
-    width: 90px;
-    height: 32px;
-}
-
-.btn-option {
-    border-radius: 5px;
-    margin: 2px;
-    margin-top: -1px;
-}
-
-.input-test {
-    height: 35px;
-    margin-top: -2px;
-    width: 99.5%;
-
 }
 
 .custom-table {
@@ -187,28 +275,20 @@ span {
 }
 
 .custom-table tH {
-    background: #304772;
-    color: white;
+    background: #d6d4d4;
+    color: black;
     height: 5px;
 
 }
 
 .custom-table tr {
     height: 10px;
-    /* Cambia este valor a la altura deseada */
     border: 1px solid white;
-    /* Cambia el borde */
 }
 
 .centered {
     text-align: center;
-    /* Centra el texto horizontalmente */
     vertical-align: middle;
-    /* Centra el texto verticalmente */
-}
-
-.row2 {
-    text-align: right;
 }
 
 :host ::ng-deep .p-toast-message {
