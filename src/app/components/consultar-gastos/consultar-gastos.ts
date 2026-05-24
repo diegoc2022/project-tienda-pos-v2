@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -8,6 +8,7 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ConsultarGastosService } from './services/consultar-gastos.service';
 import { format } from 'date-fns';
+import { formatearFecha } from '../formato-fecha/formato-fecha';
 
 @Component({
   selector: 'app-consultar-gastos',
@@ -46,6 +47,7 @@ export class ConsultarGastos {
     private fb: FormBuilder,
     private consultaGastos: ConsultarGastosService,
     private message: MessageService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -113,22 +115,28 @@ export class ConsultarGastos {
 
     this.consultaGastos.funt_retorna_gastos_operativos_s(this.data2.value.num_mes, this.data2.value.num_year).subscribe({
       next: (data: any) => {
-        const objData = JSON.stringify(data);
-        const obj = JSON.parse(objData);
         this.total_gastos = 0;
         this.gastos_data.length = 0;
-        if (obj.length > 0) {
-          for (let index = 0; index < obj.length; index++) {
-            this.total_gastos += Math.round(obj[index].valor_gastos)
-            this.gastos_data.push(obj[index]);
+        if (data.length > 0) {
+          for (let index = 0; index < data.length; index++) {
+            this.total_gastos += Math.round(data[index].valor_gastos)
+            this.gastos_data.push({
+              id: data[index].id,
+              tipo_concepto: data[index].tipo_concepto,
+              observacion: data[index].observacion,
+              num_mes: data[index].num_mes,
+              num_year: data[index].num_year,
+              valor_gasto: data[index].valor_gasto,
+              fecha_registro: formatearFecha(data[index].fecha_registro)
+            });
           }
+          this.cdr.detectChanges();
         } else {
           this.message.add({ severity: 'warn', summary: 'Advertencia:', detail: 'No hay gastos registrados para el Mes: ' + this.data2.value.num_mes + ' Año: ' + this.data2.value.num_year, life: 5000 });
         }
 
       }
     })
-
   }
 
   funct_onchange() {

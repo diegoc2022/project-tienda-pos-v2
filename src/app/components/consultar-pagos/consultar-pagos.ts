@@ -83,24 +83,22 @@ export class ConsultarPagos {
 
           this.pagos_s.funct_retorna_pagos_s(this.data.value).subscribe({
             next: (data: any) => {
-              const objData = JSON.stringify(data);
-              const obj = JSON.parse(objData);
               this.pagos_detalle.length = 0;
               this.saldo_restante = 0;
-              if (obj.length > 0) {
-                for (let index = 0; index < obj.length; index++) {
-                  this.saldo_restante += obj[index].saldo_restante;
+              if (data.length > 0) {
+                for (let index = 0; index < data.length; index++) {
+                  this.saldo_restante += data[index].saldo_restante;
                   this.pagos_detalle.push({
-                    cedula: obj[index].cedula,
-                    codigo_venta: obj[index].codigo_venta,
-                    monto_total: obj[index].monto_total,
-                    otros_pagos: obj[index].otros_pagos_realizados,
-                    ultimo_pago: obj[index].ultimo_pago_realizado,
-                    total_pagos: obj[index].total_pagos_realizados,
-                    saldo_restante: this.consumo_actual - obj[index].total_pagos_realizados,
-                    tipo_pago: obj[index].tipo_pago,
-                    estado: obj[index].estado_id_venta,
-                    fecha: formatearFecha(obj[index].fecha_registro)
+                    cedula: data[index].cedula,
+                    codigo_venta: data[index].codigo_venta,
+                    monto_total: data[index].monto_total,
+                    otros_pagos: data[index].otros_pagos_realizados,
+                    ultimo_pago: data[index].ultimo_pago_realizado,
+                    total_pagos: data[index].total_pagos_realizados,
+                    saldo_restante: this.consumo_actual - data[index].total_pagos_realizados,
+                    tipo_pago: data[index].tipo_pago,
+                    estado: data[index].estado_id_venta,
+                    fecha: formatearFecha(data[index].fecha_registro)
                   });
                 }
               } else {

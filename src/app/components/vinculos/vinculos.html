@@ -20,12 +20,12 @@
                 <div class="flex flex-col gap-2 mt-2">
                     <label for="codigoInic">{{placeholder}}</label>
                     <input type="text" id="codigoInic" pInputText formControlName="codigoInic"
-                        (keydown)="onEnterPressed($event)">
+                        (keydown)="onEnterPressed($event)" autocomplete="off">
                 </div>
                 <div class="flex flex-col gap-2 mt-2">
                     <label for="codigoVinc">{{placeholder2}}</label>
                     <input type="text" id="codigoVinc" pInputText formControlName="codigoVinc"
-                        (keyup.enter)="on_enter_codigo_producto($event);">
+                        (keyup.enter)="on_enter_codigo_producto($event);" autocomplete="off">
                 </div>
                 <div class="flex flex-col gap-2 mt-3">
                     <button pButton pRipple type="button" label="Asociar producto" icon="pi pi-check-circle"

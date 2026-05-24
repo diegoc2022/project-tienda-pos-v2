@@ -12,10 +12,9 @@
     }
 
     .content-int {
-        position: relative;
         border-radius: 5px;
-        width: 35vw;
-        height: 40vh;
+        width: 60vw;
+        height: 25vh;
         left: 0px;
         top: 0px;
         padding: 20px;
@@ -25,13 +24,50 @@
     .content-int-2 {
         position: relative;
         border-radius: 5px;
-        width: 90vw;
-        min-height: 48.5vh;
+        width: 80vw;
+        min-height: 63vh;
         left: 0px;
         margin-top: 0px;
         padding: 20px;
         border: 1px solid white;
     }
+
+    :host ::ng-deep .p-datatable {
+        width: 100%;
+        min-height: 42vh;
+        overflow-x: auto;
+    }
+
+
+    .content-1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .item-1 {
+        margin: 0 !important;
+        width: 30vw;
+    }
+
+    .item-1-2 {
+        margin: 0 !important;
+        width: 13vw;
+    }
+
+    .content-2 {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .item-2 {
+        margin: 0 !important;
+        width: 100%;
+    }
+
 
     :host ::ng-deep .p-select {
         border-color: black;
@@ -52,6 +88,13 @@
     :host ::ng-deep .p-inputnumber-input {
         height: 6vh !important;
     }
+
+    :host ::ng-deep .p-datatable {
+        width: 100%;
+        height: 135px;
+        overflow-x: auto;
+    }
+
 }
 
 @media screen and (min-width: 1440px) {
@@ -68,10 +111,9 @@
     }
 
     .content-int {
-        position: relative;
         border-radius: 5px;
-        width: 30vw;
-        height: 30vh;
+        width: 60vw;
+        height: 19vh;
         left: 0px;
         top: 0px;
         padding: 20px;
@@ -81,12 +123,48 @@
     .content-int-2 {
         position: relative;
         border-radius: 5px;
-        width: 80vw;
-        min-height: 58vh;
+        width: 90vw;
+        min-height: 70vh;
         left: 0px;
         margin-top: 0px;
         padding: 20px;
         border: 1px solid white;
+    }
+
+    :host ::ng-deep .p-datatable {
+        width: 100%;
+        height: 52vh;
+        overflow-x: auto;
+    }
+
+
+    .content-1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .item-1 {
+        margin: 0 !important;
+        width: 30vw;
+    }
+
+    .item-1-2 {
+        margin: 0 !important;
+        width: 15vw;
+    }
+
+    .content-2 {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .item-2 {
+        margin: 0 !important;
+        width: 100%;
     }
 
     :host ::ng-deep .p-select {
@@ -108,6 +186,12 @@
     :host ::ng-deep .p-inputnumber-input {
         height: 5vh !important;
     }
+
+    :host ::ng-deep .p-datatable {
+        width: 100%;
+        min-height: 260px;
+        overflow-x: auto;
+    }
 }
 
 @media screen and (min-width: 1600px) {
@@ -124,10 +208,9 @@
     }
 
     .content-int {
-        position: relative;
         border-radius: 5px;
-        width: 30vw;
-        height: 30vh;
+        width: 55vw;
+        height: 20vh;
         left: 0px;
         top: 0px;
         padding: 20px;
@@ -137,12 +220,48 @@
     .content-int-2 {
         position: relative;
         border-radius: 5px;
-        width: 80vw;
-        min-height: 58vh;
+        width: 90vw;
+        min-height: 69.5vh;
         left: 0px;
         margin-top: 0px;
         padding: 20px;
         border: 1px solid white;
+    }
+
+    :host ::ng-deep .p-datatable {
+        width: 100%;
+        height: 52vh;
+        overflow-x: auto;
+    }
+
+
+    .content-1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .item-1 {
+        margin: 0 !important;
+        width: 25vw;
+    }
+
+    .item-1-2 {
+        margin: 0 !important;
+        width: 10vw;
+    }
+
+    .content-2 {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .item-2 {
+        margin: 0 !important;
+        width: 100%;
     }
 
 
@@ -182,10 +301,9 @@
     }
 
     .content-int {
-        position: relative;
         border-radius: 5px;
-        width: 30vw;
-        height: 30vh;
+        width: 55vw;
+        height: 15vh;
         left: 0px;
         top: 0px;
         padding: 20px;
@@ -196,11 +314,47 @@
         position: relative;
         border-radius: 5px;
         width: 80vw;
-        min-height: 65.5vh;
+        min-height: 76vh;
         left: 0px;
         margin-top: 0px;
         padding: 20px;
         border: 1px solid white;
+    }
+
+    :host ::ng-deep .p-datatable {
+        width: 100%;
+        height: 62vh;
+        overflow-x: auto;
+    }
+
+
+    .content-1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .item-1 {
+        margin: 0 !important;
+        width: 20vw;
+    }
+
+    .item-1-2 {
+        margin: 0 !important;
+        width: 10vw;
+    }
+
+    .content-2 {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .item-2 {
+        margin: 0 !important;
+        width: 100%;
     }
 
     :host ::ng-deep .p-select {
@@ -216,41 +370,6 @@
 
 }
 
-.content-1 {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 1rem;
-}
-
-.item-1 {
-    margin: 0 !important;
-    width: 100%;
-}
-
-.content-2 {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 1rem;
-}
-
-.item-2 {
-    margin: 0 !important;
-    width: 100%;
-}
-
-.content-3 {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 1rem;
-}
-
-.item-3 {
-    margin: 0 !important;
-    width: 100%;
-}
 
 .w-full {
     width: 100% !important;
@@ -276,4 +395,18 @@ hr {
 
 span {
     color: white;
+}
+
+.custom-table tr {
+    background: #304772;
+    color: #e7e5e5;
+    height: 5px !important;
+    border: 1px solid white;
+    border-top-left-radius: 5px;
+}
+
+.custom-table th {
+    background: #d6d4d4;
+    color: black;
+    height: 5px !important;
 }

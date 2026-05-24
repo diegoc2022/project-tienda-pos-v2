@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { format } from 'date-fns';
 import { AjusteInvService } from './services/ajuste-inv.service';
@@ -36,7 +36,8 @@ export class AjusteInventario {
     private fb: FormBuilder,
     private vinculos: VinculosService,
     private inventario: AjusteInvService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -70,7 +71,7 @@ export class AjusteInventario {
           const nextElement = (document.querySelector(`[formControlName="codigo"]`) as HTMLElement);
           nextElement.focus();
         }, 2000)
-
+        this.cdr.detectChanges();
       }
     });
   }

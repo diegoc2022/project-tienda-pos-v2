@@ -26,8 +26,9 @@
                 <div class="item-1">
                     <div class="flex flex-col gap-2">
                         <label for="varios">Elija concepto</label>
-                        <p-select id="varios" [(ngModel)]="seleccionado" [options]="tipo_compra" optionValue="code"
-                            optionLabel="name" [showClear]="true" formControlName="varios" />
+                        <p-select #varios [(ngModel)]="seleccionado" [options]="tipo_compra" optionValue="code"
+                            optionLabel="name" [showClear]="true" formControlName="varios"
+                            (onChange)="on_codigo_producto()" />
                     </div>
                 </div>
             </div>
@@ -37,7 +38,7 @@
                 <div class="item-2">
                     <div class="flex flex-col gap-2">
                         <label for="codigo">Lea código producto</label>
-                        <input id="codigo" type="text" pInputText formControlName="codProd"
+                        <input #codigo type="text" pInputText formControlName="codProd"
                             (keyup.enter)="on_enter_codigo_producto($event);" autocomplete="off" />
                     </div>
                 </div>
@@ -52,7 +53,7 @@
                 <div class="item-3">
                     <div class="flex flex-col gap-2">
                         <label for="miInputNumber">Digite precio unitario</label>
-                        <p-inputNumber id="miInputNumber" inputId="currency-us" mode="currency" currency="USD"
+                        <p-inputNumber #miInputNumber inputId="currency-us" mode="currency" currency="USD"
                             locale="en-US" formControlName="precio_und" (keyup.enter)="on_enter_precio_unitario($event)"
                             autocomplete="off" class="mi-numero" />
                     </div>
@@ -191,71 +192,69 @@
             </div>
             <hr>
             <div class="content-button">
-                <div class="item">
-                    <p-button label="Ver detalle" icon="pi pi-book" badge={{total_registros}}
-                        badgeClass="p-badge-primary" (click)="show_dialog()" severity="warn"></p-button>
+                <div class="item-0">
+                    <button pButton pRipple type="button" label="Ver detalle compra" icon="pi pi-book"
+                        (click)="show_dialog()" class="p-button-warn w-full2"></button>
                 </div>
-                <div class="item">
+                <div class="item-0">
                     <button pButton pRipple type="button" [disabled]="habilitado" label="Agregar item compra"
-                        icon="pi pi-folder-open" class="p-button-success w-full"
+                        icon="pi pi-folder-open" class="p-button-success w-full2"
                         (click)="funct_registra_compras();"></button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-<p-dialog header="Detalle factura" [(visible)]="display" [modal]="true" [draggable]="true" [resizable]="true"
+<p-dialog header="Item compras" [(visible)]="display" [modal]="true" [draggable]="true" [resizable]="true"
     [position]="'center'" class="mi-dialogo">
     <div class="content-center">
         <div class="row">
             <div class="col-12">
-                <div class="card">
-                    <p-table [columns]="products" sortMode="multiple" selectionMode="single" class="custom-table"
-                        styleClass="p-datatable-sm" tableStyleClass="p-datatable-gridlines p-datatable-striped"
-                        [value]="products" [scrollable]="true" [(selection)]="selectedProduct1" dataKey="cod_producto"
-                        [tableStyle]="{'min-width': '50rem'}">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>Item</th>
-                                <th>Factura</th>
-                                <th>Código</th>
-                                <th>Descripción</th>
-                                <th>Precio base</th>
-                                <th>Cantidad</th>
-                                <th>Subtotal</th>
-                                <th>Descuento</th>
-                                <th>Valor iva</th>
-                                <th>Valor icui</th>
-                                <th>Costo und</th>
-                                <th>Precio venta</th>
-                                <th>Total item</th>
-                                <th>Acción</th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-rowData>
-                            <tr>
-                                <td>{{rowData.id}}</td>
-                                <td>{{rowData.num_factura}}</td>
-                                <td>{{rowData.cod_producto}}</td>
-                                <td>{{rowData.descripcion}}</td>
-                                <td>{{rowData.precio_unitario | currency}}</td>
-                                <td>{{rowData.cantidad}}</td>
-                                <td>{{rowData.subtotal | currency}}</td>
-                                <td>{{rowData.total_descuento | currency}}</td>
-                                <td>{{rowData.total_iva | currency}}</td>
-                                <td>{{rowData.total_icui | currency}}</td>
-                                <td>{{rowData.costo_unidad | currency}}</td>
-                                <td>{{rowData.precio_venta | currency}}</td>
-                                <td>{{rowData.total_compras | currency}}</td>
-                                <td>
-                                    <button pButton pRipple type="button" icon="pi pi-trash"
-                                        class="p-button-rounded p-button-text p-button-plain p-button-sm p-button2"
-                                        (click)="funct_elimina_item_compras(rowData.id);"></button>
-                                </td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
+                <p-table [columns]="products" sortMode="multiple" selectionMode="single" class="custom-table"
+                    styleClass="p-datatable-sm" tableStyleClass="p-datatable-gridlines p-datatable-striped"
+                    [value]="products" [scrollable]="true" [(selection)]="selectedProduct1" dataKey="cod_producto"
+                    [tableStyle]="{'min-width': '50rem'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Item</th>
+                            <th>Factura</th>
+                            <th>Código</th>
+                            <th>Descripción</th>
+                            <th>Precio base</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                            <th>Descuento</th>
+                            <th>Valor iva</th>
+                            <th>Valor icui</th>
+                            <th>Costo und</th>
+                            <th>Precio venta</th>
+                            <th>Total item</th>
+                            <th>Acción</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData>
+                        <tr>
+                            <td>{{rowData.id}}</td>
+                            <td>{{rowData.num_factura}}</td>
+                            <td>{{rowData.cod_producto}}</td>
+                            <td>{{rowData.descripcion}}</td>
+                            <td>{{rowData.precio_unitario | currency}}</td>
+                            <td>{{rowData.cantidad}}</td>
+                            <td>{{rowData.subtotal | currency}}</td>
+                            <td>{{rowData.total_descuento | currency}}</td>
+                            <td>{{rowData.total_iva | currency}}</td>
+                            <td>{{rowData.total_icui | currency}}</td>
+                            <td>{{rowData.costo_unidad | currency}}</td>
+                            <td>{{rowData.precio_venta | currency}}</td>
+                            <td>{{rowData.total_compras | currency}}</td>
+                            <td>
+                                <button pButton pRipple type="button" icon="pi pi-trash"
+                                    class="p-button-rounded p-button-text p-button-plain p-button-sm p-button2"
+                                    (click)="funct_elimina_item_compras(rowData.id);"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
             </div>
         </div>
     </div>
@@ -291,7 +290,7 @@
     </div>
 
     <div class="content-button">
-        <div class="item">
+        <div class="item mt-1">
             <form [formGroup]="formCompras5">
                 <p-select #varios class="dropdown-w mi-dropdown" [options]="option_inventario" optionValue="code"
                     optionLabel="name" [showClear]="true" formControlName="optCompras" styleClass="mi-select"

@@ -42,8 +42,9 @@
                 <div class="item-2">
                     <div class="flex flex-col">
                         <label for="precio_venta" class="block">Agregue total</label>
-                        <input type="number" pInputText id="precio_venta" formControlName="precio_venta"
-                            (keydown.enter)="functRegistraVenta();" autofocus class="input_ventas" />
+                        <p-inputnumber #precio_venta formControlName="precio_venta"
+                            (keydown.enter)="functRegistraVenta();" mode="currency" currency="USD" locale="en-US"
+                            [minFractionDigits]="0" [maxFractionDigits]="0" />
                     </div>
                 </div>
             </div>

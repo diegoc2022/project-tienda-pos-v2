@@ -10,6 +10,7 @@ import { VinculosService } from '../vinculos/services/vinculos.service';
 import { VentasSerivice } from '../form-ventas/services/ventas.serivice';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ComprasService } from '../compras/services/compras.service';
+import { InputNumber, InputNumberModule } from 'primeng/inputnumber';
 
 @Component({
   selector: 'app-ajuste-precios',
@@ -22,6 +23,7 @@ import { ComprasService } from '../compras/services/compras.service';
     FormsModule,
     ToastModule,
     InputTextModule,
+    InputNumberModule,
     ButtonModule,
     CheckboxModule
   ],
@@ -31,7 +33,7 @@ import { ComprasService } from '../compras/services/compras.service';
 export class AjustePrecios {
   data: FormGroup = new FormGroup({});
   @ViewChild('codigo') codigo?: ElementRef;
-  @ViewChild('precio') precio?: ElementRef;
+  @ViewChild('precio') precio?: InputNumber;
   codigo_prod?: string;
   fecha_actual?: string;
   date: Date = new Date();
@@ -66,7 +68,8 @@ export class AjustePrecios {
           const objData = JSON.stringify(data);
           const obj = JSON.parse(objData);
           this.codigo_prod = obj[0].producto.codProd;
-          this.precio?.nativeElement.focus();
+          const nativeInput = this.precio?.input?.nativeElement;
+          nativeInput?.focus();
         }
       })
     }

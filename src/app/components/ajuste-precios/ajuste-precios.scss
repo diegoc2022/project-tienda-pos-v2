@@ -9,6 +9,21 @@
         border: 2px solid white;
     }
 
+    :host ::ng-deep .p-inputtext {
+        border-color: black;
+        width: 100%;
+        height: 5vh;
+    }
+
+    :host ::ng-deep .p-inputnumber {
+        border-color: black;
+        width: 100%;
+    }
+
+    :host ::ng-deep .p-inputnumber-input {
+        height: 5vh !important;
+    }
+
 }
 
 @media screen and (min-width: 1440px) {
@@ -20,6 +35,21 @@
         margin-top: 10px;
         padding: 20px;
         border: 1px solid white;
+    }
+
+    :host ::ng-deep .p-inputtext {
+        border-color: black;
+        width: 100%;
+        height: 4.5vh;
+    }
+
+    :host ::ng-deep .p-inputnumber {
+        border-color: black;
+        width: 100%;
+    }
+
+    :host ::ng-deep .p-inputnumber-input {
+        height: 4.5vh !important;
     }
 
 }
@@ -35,6 +65,21 @@
         border: 1px solid white;
     }
 
+    :host ::ng-deep .p-inputtext {
+        border-color: black;
+        width: 100%;
+        height: 4.5vh;
+    }
+
+    :host ::ng-deep .p-inputnumber {
+        border-color: black;
+        width: 100%;
+    }
+
+    :host ::ng-deep .p-inputnumber-input {
+        height: 4.5vh !important;
+    }
+
 }
 
 /* Estilos para pantallas medianas y pequeñas (hasta 1600px de ancho) */
@@ -48,12 +93,21 @@
         padding: 20px;
         border: 1px solid white;
     }
-}
 
-:host ::ng-deep .p-inputtext {
-    border-color: black;
-    width: 100%;
-    height: 5vh;
+    :host ::ng-deep .p-inputtext {
+        border-color: black;
+        width: 100%;
+        height: 4.5vh;
+    }
+
+    :host ::ng-deep .p-inputnumber {
+        border-color: black;
+        width: 100%;
+    }
+
+    :host ::ng-deep .p-inputnumber-input {
+        height: 4.5vh !important;
+    }
 }
 
 .content {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { format } from 'date-fns';
 import { MessageService } from 'primeng/api';
@@ -37,7 +37,8 @@ import { of, switchMap, tap } from 'rxjs';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class Compras {
-  @ViewChild('varios') dropdown?: Select;
+  @ViewChild('varios') select?: Select;
+  @ViewChild('codigo') codigo!: ElementRef;
   @ViewChild('miInputNumber') inputNumberRef!: InputNumber;
   @ViewChild('precioVenta') inputNumberRef2?: any;
 
@@ -91,8 +92,7 @@ export class Compras {
     private message: MessageService,
     private compras: ComprasService,
     private retornaVinculos: VinculosService,
-    private inventario: InventarioService,
-    private productos: ProductosService
+    private inventario: InventarioService
   ) {
     this.tipo_compra = [
       { name: '100-Varios', code: '100' }
@@ -156,7 +156,7 @@ export class Compras {
   }
 
   on_enter_factura(event: any): void {
-    if (event.code == "Enter") {
+    if (event.key == 'Enter' || event.code == 'Enter') {
       this.compras.funct_retorna_compras_facturas_s(this.formCompras.value.factura).subscribe({
         next: (data: any) => {
           const objData = JSON.stringify(data);
@@ -164,9 +164,9 @@ export class Compras {
           if (count > 0) {
             this.message.add({ severity: 'error', summary: 'Error: ', detail: 'Factura Nro: ' + this.formCompras.value.factura.toUpperCase() + ' ya existe en base de datos' });
           } else {
-            if (this.dropdown) {
-              this.dropdown.focus();
-              this.dropdown.show();
+            if (this.select) {
+              this.select.focus();
+              this.select.show();
             }
           }
         },
@@ -179,8 +179,14 @@ export class Compras {
 
   }
 
+  on_codigo_producto() {
+    setTimeout(() => {
+      this.codigo.nativeElement.focus()
+    });
+  }
+
   on_enter_codigo_producto(event: any): void {
-    if (event.code == "Enter") {
+    if (event.key == 'Enter' || event.code == 'Enter') {
       this.retornaVinculos.funct_retorna_vinculos(this.formCompras2.value.codProd).subscribe({
         next: (data: any) => {
           const objData = JSON.stringify(data);
@@ -207,7 +213,7 @@ export class Compras {
   }
 
   on_enter_precio_unitario(event: any): void {
-    if (event.code == "Enter") {
+    if (event.key == 'Enter' || event.code == 'Enter') {
       this.consto_unidad_sin_iva = this.formCompras2.value.precio_und;
       const nextElement = (document.querySelector(`[formControlName="cantidad"]`) as HTMLElement);
       nextElement.focus();
@@ -215,7 +221,7 @@ export class Compras {
   }
 
   on_enter_cantidad(event: any): void {
-    if (event.code == "Enter") {
+    if (event.key == 'Enter' || event.code == 'Enter') {
       this.sub_total_sin_iva = this.formCompras2.value.precio_und * parseInt(this.formCompras2.value.cantidad);
       this.formCompras2.get('costo_sin_iva')?.setValue(this.sub_total_sin_iva);
       const nextElement = (document.querySelector(`[formControlName="desc"]`) as HTMLElement);
@@ -224,14 +230,14 @@ export class Compras {
   }
 
   on_enter_sub_total(event: any): void {
-    if (event.code == "Enter") {
+    if (event.key == 'Enter' || event.code == 'Enter') {
       const nextElement = (document.querySelector(`[formControlName="desc"]`) as HTMLElement);
       nextElement.focus();
     }
   }
 
   on_enter_descuento(event: any): void {
-    if (event.code == "Enter") {
+    if (event.key == 'Enter' || event.code == 'Enter') {
       if (this.formCompras2.value.precio_und > 0) {
         this.total_descuento = this.formCompras2.value.costo_sin_iva * this.formCompras2.value.desc / 100;
         this.formCompras2.get('total_desc')?.setValue(this.total_descuento.toFixed(2));
@@ -242,7 +248,7 @@ export class Compras {
   }
 
   on_enter_iva(event: any): void {
-    if (event.code == "Enter") {
+    if (event.key == 'Enter' || event.code == 'Enter') {
       if (this.formCompras2.value.precio_und > 0) {
         this.sub_total_con_desc = this.sub_total_sin_iva - this.total_descuento;
         this.total_iva2 = this.sub_total_con_desc * this.formCompras2.value.iva / 100;
@@ -257,7 +263,7 @@ export class Compras {
 
 
   on_enter_icui(event: any): void {
-    if (event.code == "Enter") {
+    if (event.key == 'Enter' || event.code == 'Enter') {
       if (this.formCompras2.value.precio_und > 0) {
         this.sub_total_con_desc = this.sub_total_sin_iva - this.total_descuento;
         this.total_icui = this.sub_total_con_desc * this.formCompras2.value.icui / 100;
@@ -281,7 +287,7 @@ export class Compras {
   }
 
   on_enter_total_costo(event: any): void {
-    if (event.code == "Enter") {
+    if (event.key == 'Enter' || event.code == 'Enter') {
       if (this.formCompras2.value.precio_und > 0) {
         const nextElement = (document.querySelector(`[formControlName="utilidad"]`) as HTMLElement);
         nextElement.focus();
@@ -292,7 +298,7 @@ export class Compras {
   }
 
   on_enter_utilidad(event: any): void {
-    if (event.code == "Enter") {
+    if (event.key == 'Enter' || event.code == 'Enter') {
       this.utilidad = this.consto_unidad_con_iva * parseInt(this.formCompras2.value.utilidad) / 100
       this.precio_venta = this.consto_unidad_con_iva + this.utilidad;
       this.formCompras2.get('precioVenta')?.setValue(Math.round(this.precio_venta));
@@ -332,7 +338,7 @@ export class Compras {
         this.formCompras2.get('utilidad')?.setValue('');
         this.formCompras2.get('precioVenta')?.setValue('');
 
-        this.message.add({ severity: 'info', summary: 'Informativo', detail: 'Compra registrada exitosamente' });
+        this.message.add({ severity: 'info', summary: 'Informativo', detail: 'Item compra agregado exitosamente' });
         this.funct_retorna_compras();
         setTimeout(() => {
           this.habilitado = false;
@@ -392,7 +398,6 @@ export class Compras {
 
   funct_registra_compras_historico() {
     const opcion = this.formCompras5.value.optCompras;
-
     if (opcion < 1) {
       this.message.add({
         severity: 'error',
@@ -433,13 +438,6 @@ export class Compras {
       }),
 
       switchMap(() => eliminarTemp$()),
-
-      /* tap(() => {
-        // Solo si hubo inventario (opción 1)
-        if (opcion === 1) {
-          this.funct_actualiza_data_indexieBD();
-        }
-      }) */
 
     ).subscribe({
       next: () => {

@@ -33,6 +33,12 @@
             </form>
         </div>
         <div class="content-int-2">
+            <p class="pi pi-book"> Gastos detalles:</p>
+            <br>
+            <span> Fecha:
+                {{fecha_actual}}
+            </span>
+            <hr>
             <div class="row mt-2">
                 <div class="col-12 field">
                     <p-table #dt2 [value]="gastos_data" selectionMode="single"
@@ -63,12 +69,6 @@
                         </ng-template>
                     </p-table>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-3 field ">
-                    <p>Total gastos: {{total_gastos | currency: 'USD'}}</p>
-                </div>
-                <div class="col-9 field "></div>
             </div>
         </div>
     </div>

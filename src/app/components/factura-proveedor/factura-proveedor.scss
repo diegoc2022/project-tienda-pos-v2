@@ -26,11 +26,17 @@
         position: relative;
         border-radius: 5px;
         width: 97.5vw;
-        min-height: 50vh;
+        min-height: 54vh;
         left: 0px;
         margin-top: 0px;
         padding: 20px;
         border: 1px solid white;
+    }
+
+    :host ::ng-deep .p-datatable {
+        width: 100%;
+        min-height: 244px;
+        overflow-x: auto;
     }
 
     :host ::ng-deep .p-select {
@@ -87,11 +93,17 @@
         position: relative;
         border-radius: 5px;
         width: 97.5vw;
-        min-height: 60vh;
+        min-height: 62vh;
         left: 0px;
         margin-top: 0px;
         padding: 20px;
         border: 1px solid white;
+    }
+
+    :host ::ng-deep .p-datatable {
+        width: 100%;
+        min-height: 375px;
+        overflow-x: auto;
     }
 
     :host ::ng-deep .p-inputtext {
@@ -142,11 +154,17 @@
         position: relative;
         border-radius: 5px;
         width: 98vw;
-        min-height: 60vh;
+        min-height: 62.5vh;
         left: 0px;
         margin-top: 0px;
         padding: 20px;
         border: 1px solid white;
+    }
+
+    :host ::ng-deep .p-datatable {
+        width: 100%;
+        min-height: 385px;
+        overflow-x: auto;
     }
 
     :host ::ng-deep .p-inputtext {
@@ -197,17 +215,24 @@
         position: relative;
         border-radius: 5px;
         width: 98vw;
-        min-height: 67vh;
+        min-height: 69vh;
         left: 0px;
         margin-top: 0px;
         padding: 20px;
         border: 1px solid white;
     }
 
+    :host ::ng-deep .p-datatable {
+        width: 100%;
+        min-height: 540px;
+        overflow-x: auto;
+    }
+
     :host ::ng-deep .p-inputtext {
         border-color: black;
         width: 100%;
         height: 5vh;
+        border: 1px solid black;
     }
 
     .w-full {
@@ -256,18 +281,17 @@ span {
     color: white;
 }
 
-.custom-table tr,
-td {
-    background-color: white;
-    color: black;
-    border: 1px solid rgb(160, 154, 154) !important;
+.custom-table tr {
+    background: #304772;
+    color: #e7e5e5;
     height: 5px !important;
+    border: 1px solid white;
+    border-top-left-radius: 5px;
 }
 
 .custom-table th {
-    background-color: rgb(211, 205, 205);
+    background: #d6d4d4;
     color: black;
-    border: 1px solid rgb(160, 154, 154) !important;
     height: 5px !important;
 }
 

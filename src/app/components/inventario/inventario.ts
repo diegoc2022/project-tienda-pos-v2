@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { VinculosService } from '../vinculos/services/vinculos.service';
 import { MessageService } from 'primeng/api';
@@ -72,7 +72,8 @@ export class Inventario {
     private products: ProductosService,
     private inventario: InventarioService,
     private message: MessageService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -254,6 +255,7 @@ export class Inventario {
         this.data.length = 0;
         this.data.push(data2);
         this.visible = false;
+        this.cdr.detectChanges();
       }
 
     });
@@ -292,6 +294,7 @@ export class Inventario {
               const nextElement = (document.querySelector(`[formControlName="codigo"]`) as HTMLElement);
               nextElement.focus();
             }, 1000);
+            this.cdr.detectChanges();
           }
         })
       }

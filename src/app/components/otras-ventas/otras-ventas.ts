@@ -91,8 +91,8 @@ export class OtrasVentas {
           this.data2.get('existencia')?.setValue(this.objData[0].existencia);
           this.data2.get('cant')?.setValue(1);
           this.data.setValue({ dlCodProducto: '' });
-          const nextElement = (document.querySelector(`[formControlName="precio_venta"]`) as HTMLElement);
-          nextElement.focus();
+          const nativeInput = this.numInput?.input?.nativeElement;
+          nativeInput?.focus();
         } else {
           this.message.add({ severity: 'error', summary: 'Product Selected', detail: 'El producto que intenta vender no existe en base de datos' });
         }

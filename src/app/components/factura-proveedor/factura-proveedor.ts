@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -28,11 +28,11 @@ export class FacturaProveedor {
   data!: FormGroup;
   data_factura: any[] = [];
   selectedProduct2: any;
-  sub_total_factura: number = 0;
-  total_descuento: number = 0;
-  total_iva: number = 0;
-  total_icui: number = 0;
-  total_factura: number = 0;
+  //sub_total_factura: number = 0;
+  //total_descuento: number = 0;
+  //total_iva: number = 0;
+  //total_icui: number = 0;
+  //total_factura: number = 0;
   num_factura: string = '';
   factura_detalle: any[] = [];
   fecha_actual?: string;
@@ -42,6 +42,7 @@ export class FacturaProveedor {
     private comprasFacturas: ComprasService,
     private fb: FormBuilder,
     private message: MessageService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -55,38 +56,26 @@ export class FacturaProveedor {
     if (this.data.value.factura != '') {
       this.comprasFacturas.funct_retorna_facturas_compras_s(this.data.value.factura).subscribe({
         next: (data: any) => {
-          const obj = JSON.stringify(data);
-          const objs = JSON.parse(obj);
-          if (objs.length > 0) {
+          if (data.length > 0) {
             this.num_factura = '';
-            this.sub_total_factura = 0;
-            this.total_descuento = 0;
-            this.total_iva = 0;
-            this.total_icui = 0;
-            this.total_factura = 0;
             this.factura_detalle = [];
-            for (let index = 0; index < objs.length; index++) {
-              this.num_factura = objs[index].num_factura;
-              this.sub_total_factura += Math.round(objs[index].subtotal);
-              this.total_descuento += Math.round(objs[index].total_descuento);
-              this.total_iva += Math.round(objs[index].total_iva);
-              this.total_icui += Math.round(objs[index].total_icui);
-              this.total_factura += Math.round(objs[index].total_compras);
+            for (let index = 0; index < data.length; index++) {
+              this.num_factura = data[index].num_factura;
               this.factura_detalle.push({
-                factura: objs[index].num_factura,
-                cod_producto: objs[index].cod_producto,
-                descripcion: objs[index].descripcion,
-                precio_unitario: parseFloat(objs[index].precio_unitario).toFixed(2),
-                cantidad: parseFloat(objs[index].cantidad),
-                subtotal: parseFloat(objs[index].subtotal).toFixed(2),
-                total_descuento: parseFloat(objs[index].total_descuento).toFixed(2),
-                total_iva: parseFloat(objs[index].total_iva).toFixed(2),
-                total_icui: parseFloat(objs[index].total_icui).toFixed(2),
-                total_compras: Math.round(objs[index].total_compras),
-                fecha_registro: objs[index].fecha_registro
+                factura: data[index].num_factura,
+                cod_producto: data[index].cod_producto,
+                descripcion: data[index].descripcion,
+                precio_unitario: parseFloat(data[index].precio_unitario).toFixed(2),
+                cantidad: parseFloat(data[index].cantidad),
+                subtotal: parseFloat(data[index].subtotal).toFixed(2),
+                total_descuento: parseFloat(data[index].total_descuento).toFixed(2),
+                total_iva: parseFloat(data[index].total_iva).toFixed(2),
+                total_icui: parseFloat(data[index].total_icui).toFixed(2),
+                total_compras: Math.round(data[index].total_compras),
+                fecha_registro: data[index].fecha_registro
               });
             }
-
+            this.cdr.detectChanges();
           } else {
             this.message.add({ severity: 'warn', summary: 'Advertencia', detail: 'Factura no existe en base de datos' });
           }
@@ -95,6 +84,7 @@ export class FacturaProveedor {
     } else {
       this.message.add({ severity: 'warn', summary: 'Advertencia', detail: 'Para realizar una consulta, debe ingresar número de factura' });
     }
+
   }
 
   funct_elimina_factura_compras_c() {
@@ -113,13 +103,8 @@ export class FacturaProveedor {
           this.comprasFacturas.funt_elimina_compras_factura_historico_s(this.data.value.factura).subscribe({
             next: (data: any) => {
               this.comprasFacturas.funct_elimina_compras_facturas_s(this.data.value.factura).subscribe({
-                next: (data: any) => {
+                next: (data2: any) => {
                   this.factura_detalle = [];
-                  this.sub_total_factura = 0;
-                  this.total_descuento = 0;
-                  this.total_iva = 0;
-                  this.total_icui = 0;
-                  this.total_factura = 0;
                   this.data.get('factura')?.setValue('');
                   this.message.add({ severity: 'success', summary: 'Informativo', detail: 'Factura eliminada del sistema, debe registrarla nuevamente por el formulario de compras', life: 3000 });
                   const nextElement = (document.querySelector(`[formControlName="factura"]`) as HTMLElement);
